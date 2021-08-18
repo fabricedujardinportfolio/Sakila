@@ -22,3 +22,15 @@ ECF CCI
 
 - Création du dossier public = pour une premier sécurité sur l'index.php 
 pour que Si un jour la configuration apache ou ngninx est male faite et que les fichier php ne son pas correctement  interpréter cela enpéchera d'avoir accés à l'arhitecture du projet.
+
+#### DEF
+##### PSR :
+Organisme qui etablie des standare pour php
+ 
+
+
+### Dépendance : 
+<p>Dépendance pour les test unitaire</p>
+<code>composer require phpunit/phpunit</code>
+<p>Standare pour représenter la requéte et la réponse </p>
+<code>composer require guzzlehttp/psr7</code>
