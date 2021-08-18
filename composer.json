@@ -15,6 +15,8 @@
         "phpunit/phpunit": "^9.5"
     },
     "require": {
-        "guzzlehttp/psr7": "^2.0"
+        "guzzlehttp/psr7": "^2.0",
+        "ralouphie/getallheaders": "^3.0",
+        "psr/http-server-middleware": "^1.0"
     }
 }

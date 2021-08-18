@@ -32,5 +32,5 @@ Organisme qui etablie des standare pour php
 ### Dépendance : 
 <p>Dépendance pour les test unitaire</p>
 <code>composer require phpunit/phpunit</code>
-<p>Standare pour représenter la requéte et la réponse </p>
+<p>guzzlehttp Standare pour représenter la requéte et la réponse </p>
 <code>composer require guzzlehttp/psr7</code>

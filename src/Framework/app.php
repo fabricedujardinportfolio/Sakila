@@ -2,10 +2,12 @@
 
 namespace Framework;
 
+use GuzzleHttp\Psr7\modifyRequest;
+
 class App
 {
 
-    public function run()
+    public function run(RequestInterface $request): ResponseInterface 
     {
         //Vérifier mon Url et si elle fini par un slash redirige les.
         //Je prend l'url
