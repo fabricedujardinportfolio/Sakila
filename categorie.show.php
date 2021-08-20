@@ -13,18 +13,32 @@ echo template_header('Read'); ?>
             <h3>Films</h3>
             <div class="row">
                 <?php
-				// var_dump($_GET);
-				$newID = (int)$_GET["id"];
-				// var_dump($newID);
-				$categorys = Film::readByCat($newID);
-				// var_dump($categorys);
-				?>
-                <?php 
-                foreach ($categorys as $category) {
-                    # code...
-				var_dump($category);
-                }
+                // var_dump($_GET);
+                $newID = (int)$_GET["id"];
+                $categorys = Film::readByCat($newID);                
+                $new = count($categorys);
                 ?>
+                <?php
+                foreach ($categorys as $category) {
+                    $film_id = $category['film_id'];
+                    $i = $new;
+                    while ($i <= $new):                    
+                        $film = Film::read($film_id);
+                        $i++;
+                    ?>                          
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $film["title"] ?></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>
+                        <p class="card-text"><?php echo $film["description"] ?></p>
+                        <a href="film.php" class="card-link">Retour</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>       
+               <?php
+                    endwhile;     
+				}
+				?>
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
 # Sakila
 ECF CCI
 <h2>Procédure</h2>
-
 <h3>je lance le serveur avec la commande : </h3>
 <code>php -S localhost:8000 -d display_errors </code>
 
