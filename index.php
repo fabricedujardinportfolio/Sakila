@@ -98,7 +98,27 @@ try {
 						}
 						?>
                         <nav>
-                            <span>Page : <?= $currentPage ?>/<?= $pages?></span>
+                            <span>Page : <?php 
+                            if ($currentPage==1) {
+                                echo " ";                                
+                            }else {
+                                echo'... ';  
+                                echo $currentPage-1;
+                                echo ' /';
+                            }?>
+                            <strong>
+                                <?= $currentPage?>
+                            </strong>
+                            
+                            <?php
+                            if ($currentPage==$pages) {
+                               echo"";
+                            }else{
+                                echo ' /';
+                                echo $currentPage+1;
+                                echo'... ';  
+                            }
+                            ?></span>
                     <ul class="pagination">
                         <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
                         <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
@@ -107,10 +127,7 @@ try {
                           <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                           <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
                             <a href="./?page=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
-                        </li>
-
-
-                        
+                        </li>                        
                     </ul>
                 </nav>
                     </div>
