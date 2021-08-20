@@ -45,7 +45,7 @@ try {
 						$categories = Category::all();
 						foreach ($categories as $category) {  ?>
                         <li>
-                            <a><?php echo $category["name"]; ?></a>
+                            <a href="categorie.show.php?id=<?php echo $category['category_id']?>"><?php echo $category["name"]; ?></a>
                         </li>
                         <?php
 						}
