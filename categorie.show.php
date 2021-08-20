@@ -8,7 +8,6 @@ require './classes/Film.php';
 echo template_header('Read'); ?>
 
 <section>
-    <!-- <?php var_dump($_GET); ?> -->
     <div class="col-8">
         <div class="p-3 border bg-info">
             <h3>Films</h3>
@@ -17,18 +16,15 @@ echo template_header('Read'); ?>
 				// var_dump($_GET);
 				$newID = (int)$_GET["id"];
 				// var_dump($newID);
-				$category = Category::read($newID);
-				// var_dump($category);
+				$categorys = Film::readByCat($newID);
+				// var_dump($categorys);
 				?>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $film["title"] ?></h5>
-                        <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>
-                        <p class="card-text"><?php echo $film["description"] ?></p>
-                        <a href="film.php" class="card-link">Retour</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
+                <?php 
+                foreach ($categorys as $category) {
+                    # code...
+				var_dump($category);
+                }
+                ?>
             </div>
         </div>
     </div>

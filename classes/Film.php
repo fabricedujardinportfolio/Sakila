@@ -13,8 +13,10 @@ class Film extends Database{
         $film = self::query("SELECT * FROM film WHERE film_id=$id");
         return $film->fetch();
     }
-    public static function readCat($id) {
-        $film = self::query("SELECT * FROM film WHERE film_id=$id");
-        return $film->fetch();
+
+    public static function readByCat($id) {
+        $filmByCategorie = self::query("SELECT * FROM film_category WHERE film_category.category_id = $id AND film_id in (SELECT film.film_id from film)");
+        var_dump($filmByCategorie->fetch());echo'</br>';
+        return $filmByCategorie->fetch();
     }
 }
