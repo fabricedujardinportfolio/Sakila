@@ -48,14 +48,11 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                         // connect($sql);connect
                         $query = $conn->prepare($sql);
                         $query->bindValue(':firstt', $firstt, PDO::PARAM_INT);
-                      
                         $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
                         // On exécute
                         $query->execute();
                         // On récupère les valeurs dans un tableau associatif
                         $rentals = $query->fetchAll(PDO::FETCH_ASSOC);
-                        // var_dump($rentals);
-
 						foreach ($rentals as $rental) {  ?>
                         <div class="card m-3" style="width: 21rem;">
                             <div class="card-body">
