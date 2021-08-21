@@ -38,14 +38,14 @@ try {
     <div class="container px-4">
         <div class="row gx-5">
             <div class="col-4">
-                <div class="p-3 border bg-info">
+                <div class="p-3 border  bg-primary">
                     <h3>Categories</h3>
                     <ol>
                         <?php
 						$categories = Category::all();
 						foreach ($categories as $category) {  ?>
                         <li>
-                            <a href="categorie.show.php?id=<?php echo $category['category_id']?>"><?php echo $category["name"]; ?></a>
+                            <a href="categorie.show.php?id=<?php echo $category['category_id']?>" class="text-light"><?php echo $category["name"]; ?></a>
                         </li>
                         <?php
 						}
@@ -54,18 +54,15 @@ try {
                 </div>
             </div>
             <div class="col-8">
-                <div class="p-3 border bg-info">
+                <div class="p-3 border  bg-primary">
                     <h3>Films</h3>
                     <div class="row">
                         <?php
-
-
 						$films = Film::all();
-                        // var_dump($conn);
                         // On récupère le nombre d'articles
                         $nbArticles = count($films);
                         // On détermine le nombre d'articles par page
-                        $parPage = 10;
+                        $parPage = 6;
                         // On calcule le nombre de pages total
                         $pages = ceil($nbArticles / $parPage);
                         // echo $pages;
@@ -91,7 +88,6 @@ try {
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>
                                 <p class="card-text"><?php echo $film["description"] ?></p>
                                 <a href="film.show.php?id=<?= (int)$film["film_id"] ?>" class="card-link">Voir plus</a>
-                                <a href="#" class="card-link">Another link</a>
                             </div>
                         </div>
                         <?php

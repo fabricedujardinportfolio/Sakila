@@ -22,4 +22,10 @@ class Film extends Database
         $filmByCategorie = self::query("SELECT * FROM film_category WHERE film_category.category_id = $id");
         return $filmByCategorie->fetchAll();
     }
+    public static function readByCatId($id)
+    {
+        $filmByCategorie = self::query("SELECT * FROM film_category WHERE film_category.film_id = $id");
+        return $filmByCategorie->fetchAll();
+    }
+    
 }
