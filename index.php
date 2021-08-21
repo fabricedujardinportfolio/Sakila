@@ -82,7 +82,7 @@ try {
                         // var_dump($films);
 
 						foreach ($films as $film) {  ?>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="width: 19.8rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $film["title"] ?></h5>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>

@@ -9,27 +9,17 @@ echo template_header('Show all film by catégorys'); ?>
 <section>
     <div class="container-fluid pt-5">
         <div class="p-3 border  bg-primary">
-                <?php
+            <?php
                 // var_dump($_GET);
                 $newID = (int)$_GET["id"];
-				$film = Film::read($newID);
-                $film_id = $film['film_id'];
-                $categorysNames = Category::readByFilmId($newID); 
+                // var_dump($newID);
+                $categorysNames = Category::readByFilm($newID); 
                 // var_dump($categorysNames);
-                foreach($categorysNames as $categorysName)
-                {
-                $categorysNameId = $categorysName['category_id'];
-                $categorysNameInt = (int)$categorysNameId; 
+                $categorysNameId = $categorysNames['category_id'];
+                $categorysNameInt = (int)$categorysNameId;
                 $catName = Category::read($categorysNameInt); 
-                // var_dump($catName);
-                    echo '<br>';
                     ?>
             <h3>Les films de la catégorie <?php echo $catName['name'] ?></h3>
-                  
-               <?php 
-               
-                } 
-               ?>
             <div class="row">
                 <?php
                 $categorys = Category::read($newID);                
@@ -46,7 +36,7 @@ echo template_header('Show all film by catégorys'); ?>
                     while ($i <= $new):                    
                         $film = Film::read($film_id);
                         $i++;
-                    ?>                          
+                    ?>
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $film["title"] ?></h5>
@@ -54,8 +44,8 @@ echo template_header('Show all film by catégorys'); ?>
                         <p class="card-text"><?php echo $film["description"] ?></p>
                         <a href="film.show.php?id=<?= (int)$film["film_id"] ?>" class="card-link">Voir</a>
                     </div>
-                </div>       
-               <?php
+                </div>
+                <?php
                     endwhile;     
 				}
 				?>
