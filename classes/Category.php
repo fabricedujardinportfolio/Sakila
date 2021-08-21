@@ -10,4 +10,13 @@ class Category extends Database{
         $categorie = self::query("SELECT * FROM category WHERE category_id=$id");
         return $categorie->fetch();
     }
+    public static function readByFilmId($id) {
+        $categorie = self::query("SELECT * FROM film_category WHERE film_category.film_id = $id");
+        return $categorie->fetchAll();
+    }
+    public static function readByFilm($id) {
+        $categorie = self::query("SELECT * FROM film_category WHERE film_category.category_id = $id");
+        return $categorie->fetchAll();
+    }
+    
 }

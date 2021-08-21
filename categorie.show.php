@@ -7,11 +7,33 @@ require './classes/Film.php';
 echo template_header('Show all film by catégorys'); ?>
 
 <section>
-    <div class="container-fluid">
+    <div class="container-fluid pt-5">
         <div class="p-3 border  bg-primary">
-            <h3>Films</h3>
+                <?php
+                // var_dump($_GET);
+                $newID = (int)$_GET["id"];
+				$film = Film::read($newID);
+                $film_id = $film['film_id'];
+                $categorysNames = Category::readByFilmId($newID); 
+                // var_dump($categorysNames);
+                foreach($categorysNames as $categorysName)
+                {
+                $categorysNameId = $categorysName['category_id'];
+                $categorysNameInt = (int)$categorysNameId; 
+                $catName = Category::read($categorysNameInt); 
+                // var_dump($catName);
+                    echo '<br>';
+                    ?>
+            <h3>Les films de la catégorie <?php echo $catName['name'] ?></h3>
+                  
+               <?php 
+               
+                } 
+               ?>
             <div class="row">
                 <?php
+                $categorys = Category::read($newID);                
+                $new = count($categorys);
                 // var_dump($_GET);
                 $newID = (int)$_GET["id"];
                 $categorys = Film::readByCat($newID);                
