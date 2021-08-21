@@ -4,6 +4,13 @@ require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
 echo template_header('Read one film','active'); ?>
+<?php 
+if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
+    ?>
+<?php
+        header("refresh:0; login.php");
+    else: 
+?>
 <section>
     <div class="container pt-2 mt-5">
         <div class="p-3 border bg-primary">
@@ -61,3 +68,4 @@ echo template_header('Read one film','active'); ?>
         </div>  
     </div> 
 </section>
+<?php endif;

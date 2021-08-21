@@ -97,7 +97,7 @@ if(isset($_REQUEST['valider']))	//button name is "btn_login"
 <!-- SCRIPT ICI -->
 </head>
 <body>
-<div class="container">
+<div class="container mt-3 pt-3">
     <div class="container d-flex mt-4 h-mini-90">
         <div class="col-lg-6 m-auto">
             <?php

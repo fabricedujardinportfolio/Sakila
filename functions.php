@@ -3,6 +3,7 @@
  * Header
  */
 function template_header($title,$nav_en_cours) {
+  session_start();
   $active1 ="";
   $active ="";
   $dNone='';
@@ -50,10 +51,14 @@ function template_header($title,$nav_en_cours) {
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+          <div class="col-6 text-right $dNone">
+            <a href="logout.php">
+              <button type="button" class="btn btn-primary ">DECO</button>
+            </a>
+          </div>
       </div>
     </nav>
   EOT;
-  var_dump($nav_en_cours);
 }
 
 

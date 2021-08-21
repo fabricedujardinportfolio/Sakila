@@ -1,3 +1,4 @@
+
 <?php
 if(isset($_GET['page']) && !empty($_GET['page'])){
     $currentPage = (int) strip_tags($_GET['page']);
@@ -35,7 +36,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
   }
 ?>
-<section class="pt-3 mt-3">
+<section class="pt-5 mt-3">
     <div class="container">
         <h1>LOCATION DE DVD</h1>
     </div>
