@@ -8,8 +8,8 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
 echo template_header('Read all rental','rubrique2');
-    $db_host = "localhost";
-    $db_username = "fabrice";
+$db_host = "localhost";
+    $db_username = "root";
     $db_password = "secret";
     $db_name="sakila";	//database name
 

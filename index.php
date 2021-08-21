@@ -10,7 +10,8 @@ require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
 
-
+// $conn = new PDO();
+// echo $conn->conn;
 echo template_header('Read','rubrique1');
  ?>
  <?php 
@@ -22,7 +23,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 ?>
 <?php
     $db_host = "localhost";
-    $db_username = "fabrice";
+    $db_username = "root";
     $db_password = "secret";
     $db_name="sakila";	//database name
 

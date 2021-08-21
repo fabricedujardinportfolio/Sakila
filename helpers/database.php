@@ -3,12 +3,14 @@
 class Database {
 
     const servername = "localhost";
-    const username = "fabrice";
+    const username = "root";
     const password = "secret";
     const database = "sakila";
 
     public static $table;
+    public $conn;
     public $id;
+    public $stmt;
 
   
 

@@ -3,7 +3,7 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
     $db_host = "localhost";
-    $db_username = "fabrice";
+    $db_username = "root";
     $db_password = "secret";
     $db_name="sakila";	//database name
 

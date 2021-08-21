@@ -53,7 +53,7 @@ function template_header($title,$nav_en_cours) {
         </form>
           <div class="col-6 text-right $dNone">
             <a href="logout.php">
-              <button type="button" class="btn btn-primary ">DECO</button>
+              <button type="button" class="btn btn-primary ">Déconnexion</button>
             </a>
           </div>
       </div>
