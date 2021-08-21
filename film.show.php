@@ -5,7 +5,7 @@ require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
 
-echo template_header('Read'); ?>
+echo template_header('Read one film'); ?>
 
 <section>
     <div class="container pt-2 mt-5">

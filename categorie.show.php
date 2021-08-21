@@ -4,10 +4,10 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
-echo template_header('Read'); ?>
+echo template_header('Show all film by catégorys'); ?>
 
 <section>
-    <div class="col-8">
+    <div class="container-fluid">
         <div class="p-3 border  bg-primary">
             <h3>Films</h3>
             <div class="row">
