@@ -13,7 +13,7 @@ ECF CCI
 - phpunit = pour les test unitaire
 
 
-#### DEF
+#### DEFINITION
 ##### PSR :
 Organisme qui etablie des standare pour php
  

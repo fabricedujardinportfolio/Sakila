@@ -1,13 +1,18 @@
 <?php
-
+/**
+ * Header
+ */
 function template_header($title,$nav_en_cours) {
   $active1 ="";
   $active ="";
+  $dNone='';
   if($nav_en_cours == 'rubrique1')
   {
     $active1 = "active";
   }else if($nav_en_cours == 'rubrique2') {
     $active = "active";
+  }else if($nav_en_cours=='login'){
+    $dNone='d-none';
   }else{    
     $active = "";
   }
@@ -33,7 +38,7 @@ function template_header($title,$nav_en_cours) {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto $dNone">
           <li class="nav-item  $active1">
             <a class="nav-link" href="/">LOCATION <span class="sr-only">(current)</span></a>
           </li>
@@ -41,7 +46,7 @@ function template_header($title,$nav_en_cours) {
             <a class="nav-link" href="reservation.php">Toutes les Réservations</a>
           </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0">
+        <form class="form-inline mt-2 mt-md-0 $dNone">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -53,7 +58,7 @@ function template_header($title,$nav_en_cours) {
 
 
 /**
- * function permettant de printer la template de footer
+ * Footer
  */
 function template_footer() {
   $year = date("Y");

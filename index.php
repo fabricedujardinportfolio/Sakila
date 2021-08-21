@@ -12,6 +12,13 @@ require './classes/Film.php';
 
 echo template_header('Read','rubrique1');
  ?>
+ <?php 
+if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
+    ?>
+<?php
+        header("refresh:0; login.php");
+    else: 
+?>
 <?php
 $db_host = "localhost";
 $db_username = "fabrice";
@@ -132,3 +139,4 @@ try {
         </div>
     </div>
 </section>
+<?php endif;

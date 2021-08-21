@@ -24,6 +24,14 @@ try {
   }
 
 ?>
+
+ <?php 
+if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
+    ?>
+<?php
+        header("refresh:0; /login.php");
+    else: 
+?>
 <section>
     <div class="container pt-3 mt-5">
         <div class="row">
@@ -100,3 +108,4 @@ try {
         </div>
     </div>
 </section>
+<?php endif;
