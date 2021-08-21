@@ -8,10 +8,10 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
 echo template_header('Read all rental','rubrique2');
-$db_host = "localhost";
-$db_username = "fabrice";
-$db_password = "secret";
-$db_name="sakila";	//database name
+    $db_host = "localhost";
+    $db_username = "fabrice";
+    $db_password = "secret";
+    $db_name="sakila";	//database name
 
 try {
     $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
