@@ -10,7 +10,7 @@ require './classes/Category.php';
 require './classes/Film.php';
 
 
-echo template_header('Read');
+echo template_header('Read','rubrique1');
  ?>
 <?php
 $db_host = "localhost";
@@ -28,7 +28,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
   }
 ?>
-<section>
+<section class="pt-3 mt-3">
     <div class="container">
         <h1>LOCATION DE DVD</h1>
     </div>

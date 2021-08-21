@@ -1,6 +1,16 @@
 <?php
 
-function template_header($title) {
+function template_header($title,$nav_en_cours) {
+  $active1 ="";
+  $active ="";
+  if($nav_en_cours == 'rubrique1')
+  {
+    $active1 = "active";
+  }else if($nav_en_cours == 'rubrique2') {
+    $active = "active";
+  }else{    
+    $active = "";
+  }
   echo <<<EOT
   <!DOCTYPE html>
   <html>
@@ -24,10 +34,10 @@ function template_header($title) {
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item  $active1">
             <a class="nav-link" href="/">LOCATION <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item $active">
             <a class="nav-link" href="reservation.php">Toutes les Réservations</a>
           </li>
         </ul>
@@ -38,6 +48,7 @@ function template_header($title) {
       </div>
     </nav>
   EOT;
+  var_dump($nav_en_cours);
 }
 
 

@@ -4,7 +4,7 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
-echo template_header('Show all film by catégorys'); ?>
+echo template_header('Show all film by catégorys','active'); ?>
 
 <section>
     <div class="container-fluid pt-5">
