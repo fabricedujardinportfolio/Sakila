@@ -34,7 +34,7 @@ function template_header($title,$nav_en_cours) {
     </head>
     <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#">LOCALOCA-NC</a>
+      <a class="navbar-brand" href="/">LOCALOCA-NC</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,10 +47,6 @@ function template_header($title,$nav_en_cours) {
             <a class="nav-link" href="reservation.php">Toutes les Réservations</a>
           </li>
         </ul>
-        <form class="form-inline mt-2 mt-md-0 $dNone">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
           <div class="col-6 text-right $dNone">
             <a href="logout.php">
               <button type="button" class="btn btn-primary ">Déconnexion</button>
