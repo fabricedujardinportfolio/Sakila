@@ -24,6 +24,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
     else: 
 ?>
 <?php
+// $pdo = new Database;
     $db_host = "localhost";
     $db_username = "root";
     $db_password = "secret";
@@ -68,6 +69,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                     <h3>Films</h3>
                     <div class="row">
                         <?php
+// $pdo = new Database;
 						$films = Film::all();
                         // On récupère le nombre d'articles
                         $nbArticles = count($films);
@@ -107,45 +109,41 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                               
                            ?>
                         <div class="card" style="width: 19.8rem;">
-                        <?php 
-                        
-                if ($category_id == "1") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/action.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "2") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Animation.jpg" data-holder-rendered="true">';                
-                  }elseif ($category_id == "3") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Children.jpeg" data-holder-rendered="true">';
-                  }elseif ($category_id == "4") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Classics.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "5") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Comedy.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "6") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Documentary.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "7") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Drama.webp" data-holder-rendered="true">';
-                  }elseif ($category_id == "8") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Family.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "9") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Foreign.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "10") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Games.jfif" data-holder-rendered="true">';
-                  }elseif ($category_id == "11") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Horror.jfif" data-holder-rendered="true">';
-                  }elseif ($category_id == "12") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Music.jfif" data-holder-rendered="true">';
-                  }elseif ($category_id == "13") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/New.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "14") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Sci-Fi.jpg" data-holder-rendered="true">';
-                  }elseif ($category_id == "15") {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Sports.jfif" data-holder-rendered="true">';
-                  }
-                  else {
-                    echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Travel.jpg" data-holder-rendered="true">';
-                  }
-                  
-                            
-                        ?>
+                        <?php                         
+                            if ($category_id == "1") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/action.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "2") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Animation.jpg" data-holder-rendered="true">';                
+                            }elseif ($category_id == "3") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Children.jpeg" data-holder-rendered="true">';
+                            }elseif ($category_id == "4") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Classics.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "5") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Comedy.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "6") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Documentary.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "7") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Drama.webp" data-holder-rendered="true">';
+                            }elseif ($category_id == "8") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Family.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "9") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Foreign.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "10") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Games.jfif" data-holder-rendered="true">';
+                            }elseif ($category_id == "11") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Horror.jfif" data-holder-rendered="true">';
+                            }elseif ($category_id == "12") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Music.jfif" data-holder-rendered="true">';
+                            }elseif ($category_id == "13") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/New.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "14") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Sci-Fi.jpg" data-holder-rendered="true">';
+                            }elseif ($category_id == "15") {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Sports.jfif" data-holder-rendered="true">';
+                            }
+                            else {
+                                echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Travel.jpg" data-holder-rendered="true">';
+                        } ?>
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $film["title"] ?></h5>
                                 <p>language :<?php echo $Language["name"] ?></p>

@@ -18,13 +18,14 @@ try {
 
   if (isset($_POST['query'])) {
     $inpText = $_POST['query'];
-    $sql = 'SELECT title FROM film WHERE title LIKE :film';
+    $sql = 'SELECT film_id,title FROM film WHERE title LIKE :film';
     $stmt = $conn->prepare($sql);
     $stmt->execute(['film' => '%' . $inpText . '%']);
     $result = $stmt->fetchAll();
+    // var_dump($result);
     if ($result) {
       foreach ($result as $row) {
-        echo '<a href="#" class="list-group-item list-group-item-action border-1">'. $row['title'] .' </a>';
+        echo '<a href="film.show.php?id='.$row['film_id'].'" class="list-group-item list-group-item-action border-1">'. $row['title'] .' </a>';
       }
     } else {
       echo '<p class="list-group-item border-1">Aucun titre</p>';
