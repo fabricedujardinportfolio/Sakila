@@ -59,7 +59,9 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                       while ($i <= $new):                    
                           $films = Film::readByCat($category_id);
                           foreach($films as $film){
-                          $film_id = $film['film_id'];
+                          $film_id = $film['film_id'];                           
+                          $actorByFilm = Actor::readByFilm($film_id);                          
+                          $nbActor = count($actorByFilm);    
                           $film = Film::read($film_id);
 				        ?>                        
             <div class="col-md-4">
@@ -67,6 +69,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                   <div class="card-body">
                     <h5 class="card-title"><?php echo $film["title"] ?></h5>
                     <p>Film n° : <?php echo $film['film_id']?></p>
+                    <p>Nombre d'acteur dans se film :<strong> <?php echo $nbActor ?></strong></p>
                     <p class="card-text"><?php echo $film["description"] ?></p>
                     <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
