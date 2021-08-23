@@ -44,16 +44,5 @@ class Film extends Database
         $filmByCategorie = self::query("SELECT * FROM film_category WHERE film_category.film_id = $id");
         return $filmByCategorie->fetchAll();
     }
-
-    public static function readByLang($id)
-    {
-        $filmBylanguage = self::query("SELECT * FROM language WHERE language.language_id = $id");
-        return $filmBylanguage->fetchAll();
-    }
-    public static function readByLangId($id)
-    {
-        $filmBylanguage = self::query("SELECT * FROM language WHERE language.language_id = $id");
-        return $filmBylanguage->fetchAll();
-    }
     
 }

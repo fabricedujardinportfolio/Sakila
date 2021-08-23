@@ -100,7 +100,9 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                     </ul>
                 </nav>
                 <div class="col-6 text-right">
-                    <button type="button" class="btn btn-primary ">Ajouter une réservation</button>
+                    <a href="reservation.add.php">
+                        <button type="button" class="btn btn-primary ">Ajouter une réservation</button>
+                    </a>
                 </div>
         </div>
     </div>
