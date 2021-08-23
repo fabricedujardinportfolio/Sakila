@@ -9,7 +9,6 @@ require './classes/rental.php';
 
     try {
         $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "<!--ok-->";
@@ -25,7 +24,7 @@ require './classes/rental.php';
 echo template_header('Read','login');
 if(isset($_REQUEST['valider']))	//button name is "btn_login"
 {
-    // var_dump($_POST);  
+    var_dump($_POST);  
 	$email		= strip_tags($_REQUEST["email"]);	//textbox name "txt_username_email"
 	$password	= strip_tags($_REQUEST["password"]);		//textbox name "txt_password"
 	if(empty($email)){

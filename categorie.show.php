@@ -3,6 +3,7 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
+require './classes/Language.php';
 echo template_header('Show all film by catégorys','active'); ?>
 <?php 
 if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
@@ -41,6 +42,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $film["title"] ?></h5>
+                        <p>language :<?php echo $film["name"] ?></p>
                         <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>
                         <p class="card-text"><?php echo $film["description"] ?></p>
                         <a href="film.show.php?id=<?= (int)$film["film_id"] ?>" class="card-link">Voir</a>

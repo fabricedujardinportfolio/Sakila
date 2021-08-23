@@ -9,6 +9,8 @@ require_once './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
+require './classes/Language.php';
+require './classes/Actor.php';
 
 // $conn = new PDO();
 // echo $conn->conn;
@@ -81,24 +83,36 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                         // connect($sql);connect
                         $query = $conn->prepare($sql);
                         $query->bindValue(':firstt', $firstt, PDO::PARAM_INT);
-                      
                         $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
                         // On exécute
                         $query->execute();
                         // On récupère les valeurs dans un tableau associatif
                         $films = $query->fetchAll(PDO::FETCH_ASSOC);
-                        // var_dump($films);
-
-						foreach ($films as $film) {  ?>
+                        
+                        // $language = Language::all($newID);
+						foreach ($films as $film) {     
+                           $newLanguageId = (int)$film['language_id'];  
+                           $Language = Language::read($newLanguageId);
+                           $filmId = (int)$film['film_id'];    
+                           $actorByFilm = Actor::readByFilm($filmId);                          
+                            $nbActor = count($actorByFilm);      
+                           ?>
                         <div class="card" style="width: 19.8rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $film["title"] ?></h5>
+                                <p>language :<?php echo $Language["name"] ?></p>
+                                <p>Nombre d'acteur dans se film :<strong> <?php echo $nbActor ?></strong></p>
                                 <h6 class="card-subtitle mb-2 text-muted"><?php echo $film["special_features"] ?></h6>
                                 <p class="card-text"><?php echo $film["description"] ?></p>
                                 <a href="film.show.php?id=<?= (int)$film["film_id"] ?>" class="card-link">Voir plus</a>
                             </div>
                         </div>
                         <?php
+
+                            //     }
+                            // $i++;
+                            // endwhile;     
+                                
 						}
 						?>
                         <nav>

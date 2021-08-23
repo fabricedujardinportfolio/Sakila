@@ -3,6 +3,7 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
+require './classes/Actor.php';
 echo template_header('Read one film','active'); ?>
 <?php 
 if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
@@ -13,16 +14,33 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 ?>
 <section>
     <div class="container pt-2 mt-5">
-        <div class="p-3 border bg-primary">
+        <div class="p-3 border bg-primary d-flex">
+          <div class="col-6 m-auto" style="align-items: center !important;">
                 <?php
                 $newID = (int)$_GET["id"];
                 $film = Film::read($newID);
+                $filmNewId = (int)$film['film_id'];
+                $filmActors = Actor::readByFilm($filmNewId);
                 ?>
-            <h3>Films n°:<?php echo $film["film_id"] ?></h3>
-            <h3><?php echo $film["title"] ?></h3>
-            <div class="container bg-white p-4">
+                <div class="col">
+                  <h3>Films n°:<?php echo $film["film_id"] ?></h3>              
+                  <h3><?php echo $film["title"] ?></h3>                
+                  <p><strong>Langue : <?php echo $film["name"] ?></strong></p>     
+                </div>         
+          </div>
+            <div class="col-6 bg-white p-4">
+                <h4>Caractéristiques</h4>
                 <p class="text-muted"><?php echo $film["special_features"] ?></p>
+                <h4>Description</h4>
                 <p><?php echo $film["description"] ?></p>
+                <h4>Acteur :</h4>
+                  <div class="row">
+                    <?php 
+                        foreach ($filmActors as $filmActor) {
+                          echo "<div class='col-6'>". $filmActor["first_name"]." ".$filmActor["last_name"] . "</div>";
+                        }
+                    ?>
+                  </div>
             </div>
         </div>
     </div>

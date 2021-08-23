@@ -8,9 +8,9 @@ class Database {
     const database = "sakila";
 
     public static $table;
-    public $conn;
+    // public $conn;
     public $id;
-    public $stmt;
+    // public $stmt;
 
   
 
