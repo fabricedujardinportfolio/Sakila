@@ -27,7 +27,7 @@ try {
         echo '<a href="#" class="list-group-item list-group-item-action border-1">'. $row['title'] .' </a>';
       }
     } else {
-      echo '<p class="list-group-item border-1">No Record</p>';
+      echo '<p class="list-group-item border-1">Aucun titre</p>';
     }
   }
 ?>

@@ -48,8 +48,8 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
           </div>
         </form>
       </div>
-      <div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;">
-        <div class="list-group" id="show-list" style="height: 300px;overflow: scroll;">
+      <div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;max-height: 300px; overflow: auto;">
+        <div class="list-group" id="show-list" style="overflow: auto;">
           <!-- Here autocomplete list will be display -->
         </div>
       </div>
