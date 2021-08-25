@@ -5,15 +5,17 @@ if(isset($_GET['page']) && !empty($_GET['page'])){
 }else{
     $currentPage = 1;
 }
-require_once './helpers/Database.php';
+include './helpers/Database.php';
 require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Language.php';
 require './classes/Actor.php';
 
-// $conn = new PDO();
-// echo $conn->conn;
+
+// var_dump($pdo);
+// echo $conn->conn
+// echo connect();
 echo template_header('Read','rubrique1');
  ?>
  <?php 
@@ -23,27 +25,30 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
         header("refresh:0; login.php");
     else: 
 ?>
-<?php
-// $pdo = new Database;
-    $db_host = "localhost";
-    $db_username = "root";
-    $db_password = "secret";
-    $db_name="sakila";	//database name
-
-    try {
-        $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "<!--ok-->";
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
-?>
 <section class="pt-5 mt-3">
     <div class="container">
         <h1>LOCATION DE DVD</h1>
     </div>
 </section>
+
+<?php
+$pdo = new Database;
+var_dump($pdo);
+// $pdo = new Database;
+    // $db_host = "localhost";
+    // $db_username = "root";
+    // $db_password = "secret";
+    // $db_name="sakila";	//database name
+
+    // try {
+    //     $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
+    //     // set the PDO error mode to exception
+    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //     echo "<!--ok-->";
+    // } catch(PDOException $e) {
+    //     echo "Connection failed: " . $e->getMessage();
+    // }
+?>
 
 <section>
     <div class="container px-4">
@@ -69,7 +74,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                     <h3>Films</h3>
                     <div class="row">
                         <?php
-// $pdo = new Database;
+$pdo = new Database;
 						$films = Film::all();
                         // On récupère le nombre d'articles
                         $nbArticles = count($films);
@@ -83,7 +88,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                         $sql = 'SELECT * FROM `film`  LIMIT :firstt, :parpage;';
                         // On prépare la requête
                         // connect($sql);connect
-                        $query = $conn->prepare($sql);
+                        $query = $pdo->conn->prepare($sql);
                         $query->bindValue(':firstt', $firstt, PDO::PARAM_INT);
                         $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
                         // On exécute
