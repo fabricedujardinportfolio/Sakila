@@ -32,8 +32,6 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 </section>
 
 <?php
-$pdo = new Database;
-var_dump($pdo);
 // $pdo = new Database;
     // $db_host = "localhost";
     // $db_username = "root";
@@ -74,7 +72,6 @@ var_dump($pdo);
                     <h3>Films</h3>
                     <div class="row">
                         <?php
-$pdo = new Database;
 						$films = Film::all();
                         // On récupère le nombre d'articles
                         $nbArticles = count($films);
@@ -85,25 +82,13 @@ $pdo = new Database;
                         // echo $pages;
                         // Calcul du 1er article de la page
                         $firstt = ($currentPage * $parPage) - $parPage;
-                        $sql = 'SELECT * FROM `film`  LIMIT :firstt, :parpage;';
-                        // On prépare la requête
-                        // connect($sql);connect
-                        $query = $pdo->conn->prepare($sql);
-                        $query->bindValue(':firstt', $firstt, PDO::PARAM_INT);
-                        $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
-                        // On exécute
-                        $query->execute();
-                        // On récupère les valeurs dans un tableau associatif
-                        $films = $query->fetchAll(PDO::FETCH_ASSOC);
-                        
-                        // $language = Language::all($newID);
+                        $films = Film::allWidthLimit($firstt,$parPage);
 						foreach ($films as $film) {     
                            $newLanguageId = (int)$film['language_id'];  
                            $Language = Language::read($newLanguageId);
                            $filmId = (int)$film['film_id']; 
                            $catsByFilms = Category::readByFilmId($filmId); 
-                        //    var_dump($catsByFilms);  
-                           
+                        //    var_dump($catsByFilms);                             
                            $actorByFilm = Actor::readByFilm($filmId);                          
                             $nbActor = count($actorByFilm);     
                             foreach ($catsByFilms as $catsByFilm) {

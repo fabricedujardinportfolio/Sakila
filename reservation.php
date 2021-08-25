@@ -38,21 +38,10 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                     <?php
 						$rentals = Rental::all();
                         $nbArentals = count($rentals);
-                        // var_dump($rentals);
-                        // On détermine le nombre de rental par page
                         $parPage = 6;
                         $pages = ceil($nbArentals / $parPage);
                         $firstt = ($currentPage * $parPage) - $parPage;
-                        $sql = 'SELECT * FROM `rental`  LIMIT :firstt, :parpage;';
-                        // On prépare la requête
-                        // connect($sql);connect
-                        $query = $conn->prepare($sql);
-                        $query->bindValue(':firstt', $firstt, PDO::PARAM_INT);
-                        $query->bindValue(':parpage', $parPage, PDO::PARAM_INT);
-                        // On exécute
-                        $query->execute();
-                        // On récupère les valeurs dans un tableau associatif
-                        $rentals = $query->fetchAll(PDO::FETCH_ASSOC);
+                        $rentals = Rental::allWidthLimit($firstt,$parPage);
 						foreach ($rentals as $rental) {  ?>
                         <div class="card m-3" style="width: 21rem;">
                             <div class="card-body">

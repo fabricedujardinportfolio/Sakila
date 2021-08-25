@@ -33,6 +33,11 @@ class Film extends Database
         WHERE film.film_id = $id");
         return $film->fetch();
     }
+    public static function allWidthLimit($id,$second)
+    {
+        $filmWidthLimits = self::query("SELECT * FROM `film`  LIMIT $id, $second");
+        return $filmWidthLimits->fetchAll();
+    }
 
     public static function readByCat($id)
     {
@@ -44,5 +49,12 @@ class Film extends Database
         $filmByCategorie = self::query("SELECT * FROM film_category WHERE film_category.film_id = $id");
         return $filmByCategorie->fetchAll();
     }
+    // '
+    public static function readForAjax($id)
+    {
+        $film = self::query("SELECT film_id,title FROM film WHERE title LIKE $id");
+        return $film->fetch();
+    }
+
     
 }
