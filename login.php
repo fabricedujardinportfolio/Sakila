@@ -2,19 +2,7 @@
 require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
-    $db_host = "localhost";
-    $db_username = "root";
-    $db_password = "secret";
-    $db_name="sakila";	//database name
-
-    try {
-        $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "<!--ok-->";
-    } catch(PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+require './classes/Staff.php';
 
 // if(!isset($_SESSION["user_login"]))	//check condition user login not direct back to index.php page
 // {
@@ -24,7 +12,7 @@ require './classes/rental.php';
 echo template_header('Read','login');
 if(isset($_REQUEST['valider']))	//button name is "btn_login"
 {
-    var_dump($_POST);  
+    // var_dump($_POST);  
 	$email		= strip_tags($_REQUEST["email"]);	//textbox name "txt_username_email"
 	$password	= strip_tags($_REQUEST["password"]);		//textbox name "txt_password"
 	if(empty($email)){
@@ -37,31 +25,25 @@ if(isset($_REQUEST['valider']))	//button name is "btn_login"
 	{
 		try
 		{
-			$select_stmt=$conn->prepare("SELECT * FROM `staff` WHERE staff.email=:uemail"); //sql select query
-			$select_stmt->execute(array(':uemail'=>$email));	//execute query with bind parameter
-			$row=$select_stmt->fetch(PDO::FETCH_ASSOC);	            
-            var_dump($select_stmt);   		
-			if($select_stmt->rowCount() > 0)	//check condition database record greater zero after continue
+            $users = Staff::readByEmail($email); 
+			if($users > 0)	//check condition database record greater zero after continue
 			{
-				if($email==$row["email"]) //check condition user taypable "email" is match from database "email" after continue
+				if($email==$users["email"]) //check condition user taypable "email" is match from database "email" after continue
 				{            
-					$_SESSION["active"] = $row["active"];
+					$_SESSION["active"] = $users["active"];
                     $active = $_SESSION["active"];
                     // var_dump($droit);
                     if ( $active=="1") {
-                        if($password==$row["password"]) //check condition user taypable "password" is match from database "password" using password_verify() after continue
+                        if($password==$users["password"]) //check condition user taypable "password" is match from database "password" using password_verify() after continue
                         {
-                            $_SESSION["last_name"] = $row["last_name"];
+                            $_SESSION["last_name"] = $users["last_name"];
 							$last_name = $_SESSION["last_name"];
-							$_SESSION["first_name"] = $row["first_name"];
+							$_SESSION["first_name"] = $users["first_name"];
 							$first_name = $_SESSION["first_name"]; 
-							$_SESSION["email"] = $row["email"];
+							$_SESSION["email"] = $users["email"];
 							$email = $_SESSION["email"];             
-							$_SESSION["username"] = $row["username"];
+							$_SESSION["username"] = $users["username"];
 							$username = $_SESSION["username"];
-							// var_dump($agents_app_id); 
-							// var_dump($applications_id);        
-                            //session name is "user_login"
                             $_SESSION["loggedIn"] = true;
                             $loginMsg = "Connexion réussie...";		//user login success message
                             header("refresh:2; ../index.php");			//refresh 2 second after redirect to "welcome.php" page

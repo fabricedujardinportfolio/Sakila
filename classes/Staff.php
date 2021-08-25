@@ -15,8 +15,7 @@ class Staff extends Database
     }
     public static function readByEmail($email)
     {
-        $staffEmail = self::query("SELECT email FROM staff WHERE email=$email");
-        var_dump($staffEmail);
+        $staffEmail = self::query("SELECT * FROM staff WHERE staff.email='$email'");
         return $staffEmail->fetch();
     }
     

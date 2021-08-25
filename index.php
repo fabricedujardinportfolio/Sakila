@@ -11,11 +11,6 @@ require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Language.php';
 require './classes/Actor.php';
-
-
-// var_dump($pdo);
-// echo $conn->conn
-// echo connect();
 echo template_header('Read','rubrique1');
  ?>
  <?php 
@@ -30,24 +25,6 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
         <h1>LOCATION DE DVD</h1>
     </div>
 </section>
-
-<?php
-// $pdo = new Database;
-    // $db_host = "localhost";
-    // $db_username = "root";
-    // $db_password = "secret";
-    // $db_name="sakila";	//database name
-
-    // try {
-    //     $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-    //     // set the PDO error mode to exception
-    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //     echo "<!--ok-->";
-    // } catch(PDOException $e) {
-    //     echo "Connection failed: " . $e->getMessage();
-    // }
-?>
-
 <section>
     <div class="container px-4">
         <div class="row gx-5">

@@ -50,10 +50,10 @@ class Film extends Database
         return $filmByCategorie->fetchAll();
     }
     // '
-    public static function readForAjax($id)
+    public static function readForAjax($title)
     {
-        $film = self::query("SELECT film_id,title FROM film WHERE title LIKE $id");
-        return $film->fetch();
+        $films = self::query("SELECT film_id,title FROM film WHERE title LIKE '%$title%' ");
+        return $films->fetchall();
     }
 
     

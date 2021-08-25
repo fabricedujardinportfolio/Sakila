@@ -8,23 +8,7 @@ require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
 echo template_header('Read all rental','rubrique2');
-$db_host = "localhost";
-    $db_username = "root";
-    $db_password = "secret";
-    $db_name="sakila";	//database name
-
-try {
-    $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "<!--ok-->";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-  }
-
 ?>
-
  <?php 
 if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
     ?>

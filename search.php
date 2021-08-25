@@ -1,30 +1,11 @@
 <?php
-if(isset($_GET['page-rental']) && !empty($_GET['page-rental'])){
-    $currentPage = (int) strip_tags($_GET['page-rental']);
-}else{
-    $currentPage = 1;
-}
+
 require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
 require './classes/Category.php';
 require './classes/Film.php';
 echo template_header('Read all rental','rubrique2');
-$db_host = "localhost";
-    $db_username = "root";
-    $db_password = "secret";
-    $db_name="sakila";	//database name
-
-try {
-    $conn = new PDO("mysql:host={$db_host};dbname={$db_name}", $db_username, $db_password);
-
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "<!--ok-->";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-  }
-
 ?>
  <?php 
 if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
@@ -36,12 +17,12 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 <div class="container mt-5 pt-5">
     <div class="row mt-4">
       <div class="col-md-8 mx-auto bg-light rounded p-4">
-        <h5 class="text-center font-weight-bold">Recherche de saisie semi-automatique par titre</h5>
+        <h5 class="text-center font-weight-bold">Recherche en saisie semi-automatique par titre</h5>
         <hr class="my-1">
         <h5 class="text-center text-secondary">Écrivez n'importe quel film connue de votre BDD dans la zone de recherche</h5>
         <form action="details.php" method="post" class="p-3">
           <div class="input-group">
-            <input type="text" name="search" id="search" class="form-control form-control-lg rounded-0 border-info" placeholder="Search..." autocomplete="off" required>
+            <input type="text" name="search" id="search" class="form-control form-control-lg rounded-0 border-info" placeholder="Rechercher..." autocomplete="off" required>
           </div>
         </form>
       </div>
