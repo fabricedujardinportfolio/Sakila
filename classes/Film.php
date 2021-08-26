@@ -33,6 +33,11 @@ class Film extends Database
         WHERE film.film_id = $id");
         return $film->fetch();
     }
+    public static function readId($id)
+    {
+        $filmWidthLimits = self::query("SELECT * FROM `film`  WHERE film_id=$id");
+        return $filmWidthLimits->fetch();
+    }
     public static function allWidthLimit($id,$second)
     {
         $filmWidthLimits = self::query("SELECT * FROM `film`  LIMIT $id, $second");

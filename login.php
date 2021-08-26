@@ -4,9 +4,9 @@ require './functions.php';
 require './classes/rental.php';
 require './classes/Staff.php';
 
-// if(!isset($_SESSION["user_login"]))	//check condition user login not direct back to index.php page
+// if(!isset($_SESSION["loggedIn"]) == true)	//check condition user login not direct back to index.php page
 // {
-// 	header("location: ../index.php");
+// 	header("refresh:0; index.php");
 // }
 
 echo template_header('Read','login');

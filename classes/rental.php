@@ -15,4 +15,14 @@ class Rental extends Database{
         $rentals = self::query("SELECT * FROM `rental`  LIMIT $id, $second");
         return $rentals->fetchAll();
     }
+    public static function readByCustomer($id)
+    {
+        $rentals = self::query("SELECT * FROM `rental`  WHERE customer_id=$id");
+        return $rentals->fetchAll();
+    }
+    public static function readByInventoryAndCustomer($id,$inventory)
+    {
+        $rentals = self::query("SELECT * FROM `rental`  WHERE customer_id=$id AND inventory_id=$inventory");
+        return $rentals->fetchAll();
+    }
 }

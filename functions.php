@@ -3,6 +3,7 @@
  * Header
  */
 function template_header($title,$nav_en_cours) {
+  $server = $_SERVER['HTTP_HOST'];
   session_start();
   $active1 ="";
   $active ="";
@@ -45,7 +46,7 @@ function template_header($title,$nav_en_cours) {
             <a class="nav-link" href="/">LOCATION <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item $active">
-            <a class="nav-link" href="reservation.php">Toutes les Réservations</a>
+            <a class="nav-link" href="http://$server/reservation.php">Toutes les Réservations</a>
           </li>
         </ul>
           <div class="col-6 text-right $dNone">

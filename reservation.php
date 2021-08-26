@@ -33,7 +33,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                                 <h6 class="card-subtitle mb-2 text-muted">Date de la résa :<br><strong><?php echo $rental["rental_date"]; ?></strong></h6>
                                 <h6 class="card-subtitle mb-2 text-muted">Date du retour de la résa :<br><strong><?php echo $rental["return_date"]; ?></strong></h6>
                                 <p class="card-text"></p>
-                                <a href="rental.show.php?id=<?php echo $rental['rental_id']?>" class="card-link">Voir</a>
+                                <a href="<?php $_SERVER['HTTP_HOST'];?>/reservation.inventory.php/?id=<?php echo $rental['rental_id'];?>" class="card-link">Voir</a>
                             </div>
                         </div>
                         <?php
