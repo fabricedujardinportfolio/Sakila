@@ -36,6 +36,8 @@ if(isset($_REQUEST['valider']))	//button name is "btn_login"
                     if ( $active=="1") {
                         if($password==$users["password"]) //check condition user taypable "password" is match from database "password" using password_verify() after continue
                         {
+                            $_SESSION["staff_id"] = $users["staff_id"];
+							$staff_id = $_SESSION["staff_id"];
                             $_SESSION["last_name"] = $users["last_name"];
 							$last_name = $_SESSION["last_name"];
 							$_SESSION["first_name"] = $users["first_name"];

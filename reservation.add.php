@@ -23,44 +23,30 @@ if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
 <?php
     header("refresh:0; /login.php");
 else :
-
-    
     // // // // Shamps in Store 
     // store_id
     // manager_staff_id
     // address_id
+    $staffId = (int)$_SESSION["staff_id"];
+    $categorys = Category::all();
 ?>
     <section>
         <div class="container pt-3 mt-5">
+                    <?php                       
+                        $stores = Store::read($staffId);
+                        $staff = Staff::read($staffId);
+                        $addressId = (int)$stores['address_id'];
+                        $adressNames = Address::read($addressId);
+                        $adressName = $adressNames['address']; 
+                        echo "<option value='$addressId'></option>";
+                    ?>
             <form action="" method="post">
                 <h2>Formulaire pour un nouvel enregistrement</h2>
-                <label for="magasin">Address du magasin de la location</label>
-                <select name="stor" id="stor_id">
-                    <?php   
-                        $stores = Store::all();
-                        foreach ($stores as $store) {
-                            $StoreId = (int)$store['store_id'];  
-                            $adressNames = Address::read($StoreId);
-                            $adressName = $adressNames['address']; 
-                            echo "<option value='$StoreId'>$adressName</option>";
-                        }
-                    ?>
-                </select>
-                <label for="staff">Manager qui effectue la location</label>
-                <select>
-                    <?php
-                        foreach ($stores as $store) {
-                            $StoreManager_staff_id = (int)$store['manager_staff_id'];
-                            $staffId = Staff::read($StoreManager_staff_id);
-                            $staffName = $staffId['first_name'];
-                            echo "<option value='$StoreManager_staff_id'>$staffName</option>";
-                        }
-                    ?>
-                </select>
+                <label for="magasin">Address du magasin de la location <strong><?php echo $adressName?></strong></label><br>
+                <label for="staff">Manager qui effectue la location <strong><?php echo $staff['username'] ;?></strong></label><br>
                 <label for="category">Catégory du film</label>
                 <select name="" id="">
                     <?php 
-                        $categorys = Category::all();
                         foreach ($categorys as $category) {
                             $categoryId = (int)$category['category_id'];
                             $categoryName = $category['name'];
