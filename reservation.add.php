@@ -24,8 +24,7 @@ if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
     header("refresh:0; /login.php");
 else :
 
-    $stores = Store::all();
-    var_dump($stores);
+    
     // // // // Shamps in Store 
     // store_id
     // manager_staff_id
@@ -38,6 +37,7 @@ else :
                 <label for="magasin">Address du magasin de la location</label>
                 <select name="stor" id="stor_id">
                     <?php   
+                        $stores = Store::all();
                         foreach ($stores as $store) {
                             $StoreId = (int)$store['store_id'];  
                             $adressNames = Address::read($StoreId);
@@ -54,6 +54,17 @@ else :
                             $staffId = Staff::read($StoreManager_staff_id);
                             $staffName = $staffId['first_name'];
                             echo "<option value='$StoreManager_staff_id'>$staffName</option>";
+                        }
+                    ?>
+                </select>
+                <label for="category">Catégory du film</label>
+                <select name="" id="">
+                    <?php 
+                        $categorys = Category::all();
+                        foreach ($categorys as $category) {
+                            $categoryId = (int)$category['category_id'];
+                            $categoryName = $category['name'];
+                            echo "<option value='$categoryId'>$categoryName</option>";
                         }
                     ?>
                 </select>
