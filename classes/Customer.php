@@ -18,5 +18,9 @@ class Customer extends Database
         $staffEmail = self::query("SELECT * FROM customer WHERE customer.email='$email'");
         return $staffEmail->fetch();
     }
-    
+    public static function readByLike($like)
+    {
+        $customerLike = self::query("SELECT * FROM customer WHERE last_name like '%$like%'");
+        return $customerLike->fetchAll();
+    }
 }

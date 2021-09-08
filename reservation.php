@@ -9,7 +9,7 @@ require './functions.php';
 require './classes/rental.php';
 echo template_header('Read all rental','rubrique2');
 ?>
- <?php 
+<?php 
 if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
     ?>
 <?php
@@ -19,7 +19,8 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 <section>
     <div class="container pt-3 mt-5">
         <div class="row">
-                    <?php
+            <?php
+                        $server = $_SERVER['HTTP_HOST'];
 						$rentals = Rental::all();
                         $nbArentals = count($rentals);
                         $parPage = 6;
@@ -27,20 +28,23 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                         $firstt = ($currentPage * $parPage) - $parPage;
                         $rentals = Rental::allWidthLimit($firstt,$parPage);
 						foreach ($rentals as $rental) {  ?>
-                        <div class="card m-3" style="width: 21rem;">
-                            <div class="card-body">
-                                <h5 class="card-title">Numéro du client : <?php echo $rental['rental_id']?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted">Date de la résa :<br><strong><?php echo $rental["rental_date"]; ?></strong></h6>
-                                <h6 class="card-subtitle mb-2 text-muted">Date du retour de la résa :<br><strong><?php echo $rental["return_date"]; ?></strong></h6>
-                                <p class="card-text"></p>
-                                <a href="<?php $_SERVER['HTTP_HOST'];?>/reservation.inventory.php/?id=<?php echo $rental['rental_id'];?>" class="card-link">Voir</a>
-                            </div>
-                        </div>
-                        <?php
+            <div class="card m-3" style="width: 21rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Numéro du client : <?php echo $rental['rental_id']?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Date de la résa
+                        :<br><strong><?php echo $rental["rental_date"]; ?></strong></h6>
+                    <h6 class="card-subtitle mb-2 text-muted">Date du retour de la résa
+                        :<br><strong><?php echo $rental["return_date"]; ?></strong></h6>
+                    <p class="card-text"></p>
+                    <a href="<?php $_SERVER['HTTP_HOST'];?>/reservation.inventory.php/?id=<?php echo $rental['rental_id'];?>"
+                        class="card-link">Voir</a>
+                </div>
+            </div>
+            <?php
 						}
 					?>
-                        <nav class="col-6">
-                            <span>Page : <?php 
+            <nav class="col-6">
+                <span>Page : <?php 
                             if ($currentPage==1) {
                                 echo " ";                                
                             }else {
@@ -48,11 +52,10 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                                 echo $currentPage-1;
                                 echo ' /';
                             }?>
-                            <strong>
-                                <?= $currentPage?>
-                            </strong>
-                            
-                            <?php
+                    <strong>
+                        <?= $currentPage?>
+                    </strong>
+                    <?php
                             if ($currentPage==$pages) {
                                echo"";
                             }else{
@@ -61,22 +64,23 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                                 echo'... ';  
                             }
                             ?></span>
-                    <ul class="pagination">
-                        <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
-                        <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
-                            <a href="/reservation.php/./?page-rental=<?= $currentPage - 1 ?>" class="page-link">Précédente</a>
-                        </li>
-                          <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
-                          <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
-                            <a href="/reservation.php/./?page-rental=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
-                        </li>                        
-                    </ul>
-                </nav>
-                <div class="col-6 text-right">
-                    <a href="reservation.add.php">
-                        <button type="button" class="btn btn-primary ">Ajouter une réservation</button>
-                    </a>
-                </div>
+                <ul class="pagination">
+                    <!-- Lien vers la page précédente (désactivé si on se trouve sur la 1ère page) -->
+                    <li class="page-item <?= ($currentPage == 1) ? "disabled" : "" ?>">
+                        <a href="/reservation.php/./?page-rental=<?= $currentPage - 1 ?>"
+                            class="page-link">Précédente</a>
+                    </li>
+                    <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
+                    <li class="page-item <?= ($currentPage == $pages) ? "disabled" : "" ?>">
+                        <a href="/reservation.php/./?page-rental=<?= $currentPage + 1 ?>" class="page-link">Suivante</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="col-6 text-right">
+                <a href="http://<?php echo $server?>/reservation.add.php">
+                    <button type="button" class="btn btn-primary ">Ajouter une réservation</button>
+                </a>
+            </div>
         </div>
     </div>
 </section>

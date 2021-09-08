@@ -19,7 +19,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
 <section>
     <div class="container pt-2 mt-5">
         <div class="p-3 border border-3 border-dark bg-primary  mt-2">
-          <div class="col-12 m-auto" style="align-items: center !important;">
+            <div class="col-12 m-auto" style="align-items: center !important;">
                 <?php
                 // Dans l'inventaire j'ai de dispot le store et e film par le id 
                 // Dans customer j'ai de disponible le client par son id 
@@ -49,42 +49,46 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                 $Staff = Staff::read($staff_id);
                 ?>
                 <div class="col">
-                  <div class="row">
-                    <div class="col-6">
-                      <h3 class="text-white ">Client : <?php echo $customerId["last_name"] ?> <?php echo  $customerId["first_name"] ?> </h3> 
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="text-white ">Client : <?php echo $customerId["last_name"] ?>
+                                <?php echo  $customerId["first_name"] ?> </h3>
+                        </div>
+                        <div class="col-6">
+                            <p> <strong class="text-dark ">Date de la location :</strong> <strong
+                                    class="text-white "><?php echo $rental["rental_date"] ?></strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong class="text-dark ">Enregistré par : </strong><strong
+                                    class="text-white "><?php echo $Staff['first_name'] ?></strong></p>
+                        </div>
+                        <div class="col-6">
+                            <p><strong class="text-dark ">Date retour de la location :</strong> <strong
+                                    class="text-white "><?php echo $rental["return_date"] ?></strong></p>
+                        </div>
                     </div>
-                    <div class="col-6">
-                      <p > <strong class="text-dark ">Date de la location :</strong> <strong class="text-white "><?php echo $rental["rental_date"] ?></strong></p> 
-                    </div>  
-                    <div class="col-6">
-                      <p><strong class="text-dark ">Enregistré par : </strong><strong class="text-white "><?php echo $Staff['first_name'] ?></strong></p> 
-                    </div> 
-                    <div class="col-6">
-                      <p><strong class="text-dark ">Date retour de la location :</strong> <strong class="text-white "><?php echo $rental["return_date"] ?></strong></p>    
-                    </div> 
-                  </div>                         
-                </div>         
-          </div>
+                </div>
+            </div>
             <div class="col-12 bg-white p-4">
-              <div class="row">
-                <div class="container">
-                  <div class="row">
-                    <div class="col-6 m-auto bg-light border border-primary">
-                      <h4>Récapitulatif du film</h4>
-                      <p>Catégorie : <?php echo $category['name'];?></p>
-                      <?php                 
+                <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6 m-auto bg-light border border-primary">
+                                <h4>Récapitulatif du film</h4>
+                                <p>Catégorie : <?php echo $category['name'];?></p>
+                                <?php                 
                       $film = Film::read($filmId);                
                       ?>
-                      <p class="text-muted"><strong>Titre : <?php echo $film["title"] ?></strong></p>
-                      <h4>Description</h4>
-                      <p><?php echo $film["description"] ?></p>
-                      <p>Réaliser en <?php echo $film['release_year'] ?></p>
-                      <p></p>
-                      <p>Durée de la location : <?php echo $film['rental_duration'] ?>/Jour </p>
-                    </div>
-                    <div class="col-6">
-                      <h4>Acteur :</h4>
-                      <?php 
+                                <p class="text-muted"><strong>Titre : <?php echo $film["title"] ?></strong></p>
+                                <h4>Description</h4>
+                                <p><?php echo $film["description"] ?></p>
+                                <p>Réaliser en <?php echo $film['release_year'] ?></p>
+                                <p></p>
+                                <p>Durée de la location : <?php echo $film['rental_duration'] ?>/Jour </p>
+                            </div>
+                            <div class="col-6">
+                                <h4>Acteur :</h4>
+                                <?php 
                       $film_id = $film['film_id'];                           
                       $actorByFilms = Actor::readByFilm($film_id);                          
                       $nbActor = count($actorByFilms);    
@@ -129,23 +133,23 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                   echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/Travel.jpg" data-holder-rendered="true">';
                 }
                 
-                      ?>   
-                                     
+                      ?>
+
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="container bg-primary mt-2">
+                        <p class="text-uppercase"><strong><u>Info staff:</u> </strong></p>
+                        <ul class='text-white '>
+                            <li>Tarif de location : <?php echo $film['rental_rate'] ?></li>
+                            <li>Coût de remplacement du film : <?php echo $film['replacement_cost'] ?></li>
+                            <li>Evalution <?php echo $film['rating'] ?></li>
+                            <li>Caractéristiques spéciales : <?php echo $film['special_features'] ?></li>
+                            <li>Dernier modification : <?php echo $film['last_update'] ?></li>
+                        </ul>
+                    </div>
                 </div>
-                    <div class="container bg-primary mt-2">                        
-                      <p class="text-uppercase"><strong><u>Info staff:</u> </strong></p>
-                      <ul class='text-white '>
-                        <li>Tarif de location : <?php echo $film['rental_rate'] ?></li>
-                        <li>Coût de remplacement du film : <?php echo $film['replacement_cost'] ?></li>
-                        <li>Evalution <?php echo $film['rating'] ?></li>
-                        <li>Caractéristiques spéciales : <?php echo $film['special_features'] ?></li>
-                        <li>Dernier modification : <?php echo $film['last_update'] ?></li>
-                      </ul>
-                    </div>                
             </div>
-          </div>
         </div>
     </div>
 </section>
@@ -153,7 +157,7 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
     <div class="container border border-3 border-dark pt-2 mt-5">
         <h3 style="text-decoration: underline;">Tous les réservations de ce client:</h3>
         <div class="row">
-                <?php
+            <?php
                 //selectionner tous les rental de ce client 
                 $customerIds =  $customerId['customer_id'];
                 $customerIdInt = (int)$customerIds;
@@ -178,11 +182,11 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                     $category_id = $category['category_id'];
                     }
                     echo '<br>';
-                    ?>  
-                                     
+                    ?>
+
             <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <?php 
+                <div class="card mb-4 box-shadow">
+                    <?php 
                 if ($category_id == "1") {
                   echo'<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/action.jpg" data-holder-rendered="true">';
                 }elseif ($category_id == "2") {
@@ -220,28 +224,29 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
                 
                 
                 ?>
-                  <div class="card-body">
-                    <h5 class="card-title"><?php echo $films["title"] ?></h5>
-                    <p>Film n° : <?php echo $films['film_id']?></p>
-                    <p>Nombre d'acteur dans se film :<strong> <?php echo $nbActor ?></strong></p>
-                    <p class="card-text"><?php echo $films["description"] ?></p>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $films["title"] ?></h5>
+                        <p>Film n° : <?php echo $films['film_id']?></p>
+                        <p>Nombre d'acteur dans se film :<strong> <?php echo $nbActor ?></strong></p>
+                        <p class="card-text"><?php echo $films["description"] ?></p>
+                        <div class="d-flex justify-content-between align-items-center">
 
-                    <div class="btn-group">
-                      <a href="<?php $_SERVER['HTTP_HOST'];?>/reservation.inventory.php/?id=<?php echo $rentalByFilmCustomer;?>">Voir</a>
+                            <div class="btn-group">
+                                <a
+                                    href="<?php $_SERVER['HTTP_HOST'];?>/reservation.inventory.php/?id=<?php echo $rentalByFilmCustomer;?>">Voir</a>
+                            </div>
+                            <small class="text-muted">9 mins</small>
+                        </div>
                     </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
                 </div>
-              </div>
-            </div>    
-                    <?php
+            </div>
+            <?php
                   $i++;
                   endwhile;  
                  
 				        }
 				      ?>
-        </div>  
-    </div> 
+        </div>
+    </div>
 </section>
 <?php endif;
