@@ -19,4 +19,5 @@ class Staff extends Database
         return $staffEmail->fetch();
     }
     
+    
 }

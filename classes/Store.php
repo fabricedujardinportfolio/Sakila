@@ -13,4 +13,9 @@ class Store extends Database
         $staff = self::query("SELECT * FROM store WHERE store_id=$id");
         return $staff->fetch();
     }
+    public static function readByStaffId($id)
+    {
+        $staff = self::query("SELECT * FROM store WHERE manager_staff_id=$id");
+        return $staff->fetch();
+    }
 }
