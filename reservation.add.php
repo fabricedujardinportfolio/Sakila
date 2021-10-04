@@ -26,11 +26,19 @@ else :
     $server = $_SERVER['HTTP_HOST'];
     $stores = Store::all();
     $staff_id = (int)$_SESSION["staff_id"];
+    $dateEnglish = date('d-m-Y');
+    $unixTime = time();
+    $timeZone = new \DateTimeZone('Pacific/Noumea');
+    $dateNow = date('Y-m-d H:i:s');
+    $time = new \DateTime();
+    $time->setTimestamp($unixTime)->setTimezone($timeZone);
+    $formattedTime = $time->format('d/m/YTH:i:s');
 ?>
     <main class="form-signin text-center container mt-4">
-        <form>
-            <p><strong>LOCALOCA-NC <?php echo $_SESSION["staff_id"] ?></strong></p>
-            <h1 class="h3 mb-3 fw-normal">Nouvel réservation</h1>
+        <form action="" method="post" name="fo" class="mt-5 pt-5">
+            <!-- //reservationResult.php -->
+            <p class="mt-5 pt-5"><strong>LOCALOCA-NC Staff numéro :<?php echo $_SESSION["staff_id"] ?></strong></p>
+            <h1 class="h3 mb-3 fw-normal mt-4 pt-4">Nouvel réservation</h1>
             <div class="d-flex">
                 <div class="col-3"></div>
                 <div class="m-auto col-6">
@@ -40,9 +48,10 @@ else :
                             <div class="col-3"></div>
                             <div class="col-6">
 
-                                <label for="film" class="form-label">Client du magasin</label>
+                                <label for="search-box" class="form-label">Client du magasin</label>
                                 <div class="frmSearch">
-                                    <input type="text" id="search-box" class="form-control" placeholder="Chercher un client" required />
+                                    <input type="text" class="d-none" id="customerId" name="customerId">
+                                    <input type="text" id="search-box" class="form-control" placeholder="Chercher un client" required autocomplete="off" />
                                     <div id="suggesstion-box"></div>
                                 </div>
                                 <div id="hide1" class="container">
@@ -58,20 +67,6 @@ else :
                             <div class="row">
                                 <div class="col-3"></div>
                                 <div class="col-6">
-                                    <label for="store_id" class="form-label">Store</label>
-                                    <select class="form-select" id="store_id" required="">
-                                        <?php
-                                        foreach ($stores as $store) {
-                                            $StoreId = (int)$store['store_id'];
-                                            $adressNames = Address::read($StoreId);
-                                            $adressName = $adressNames['address'];
-                                            echo "<option value='$StoreId'>$adressName</option>";
-                                        }
-                                        ?>
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Please select a valid store.
-                                    </div>
                                 </div>
                                 <div class="col-3"></div>
                             </div>
@@ -80,39 +75,48 @@ else :
                                 $Staff = Staff::read($staff_id);
                                 // 
                                 ?>
-                                <input type="text" class="d-none" name="staff_id" value="<?php echo $Staff['staff_id'] ?>" disabled>
+                                <input type="text" class="d-none" name="staff_id" value="<?php echo $Staff['staff_id'] ?>" readonly="readonly">
                                 <label for="manager" class="form-label">Manager</label>
                                 <input type="text" value="<?php echo $Staff['last_name'] ?> <?php echo $Staff['first_name'] ?>" disabled>
                                 <div class="invalid-feedback">
-                                    Please select a valid country.
+                                    Please select a valid Manager.
                                 </div>
                             </div>
                             <!-- Droite -->
                             <div class="col-md-12">
-                                <div id="hide2" class="my-3 d-none">
+                                <div id="hide2" class="my-3 ">
                                     <div class="form-check">
-                                        <input id="credit" name="inventory" type="radio" value="1" class="form-check-input" checked="" required>
-                                        <label class="form-check-label" for="credit">Inventaire 1</label>
+                                        <input id="stor1" name="inventory" type="radio" value="1" class="form-check-input radio">
+                                        <label class="form-check-label" for="credit">Magasin 1</label>
                                     </div>
                                     <div class="form-check">
-                                        <input id="debit" name="inventory" type="radio" class="form-check-input" value="2" required>
-                                        <label class="form-check-label" for="debit">Inventaire 2</label>
+                                        <input id="stor2" name="inventory" type="radio" class="form-check-input radio" value="2">
+                                        <label class="form-check-label" for="debit">Magasin 2</label>
                                     </div>
                                 </div>
-                                <label for="film" class="form-label">Client du magasin</label>
+                                <label for="film" class="form-label">Film de l'inventaire du magasin</label>
                                 <div class="frmSearch-2">
-                                    <input type="text" id="search-box-2" class="form-control" placeholder="Chercher un client" required />
+                                    <div class="container " id="containerFilm">
+                                        <input type="text" value="" class="d-none" id="search-box-1-id" name="filmId" required readonly="readonly" />
+                                    </div>
+                                    <input type="text" id="search-box-1" class="form-control d-none" placeholder="Chercher un Film" autocomplete="off" />
+                                    <input type="text" id="search-box-2" class="form-control d-none" placeholder="Chercher un Film" autocomplete="off" />
                                     <div id="suggesstion-box-2"></div>
-                                </div>
-                                <div id="hide3" class="row d-none">
-                                    <div class="col-3"></div>
-                                    <div class="col-6">
-                                        <label for="film" class="form-label">Film de l'inventaire</label>
-                                        <input type="text" class="form-control" id="film" placeholder="Chercher un film " value="" required>
-                                        <div class="invalid-feedback">
-                                            Valid first name is required.
+                                    <input type="text" class="d-none" readonly="readonly" id="inventoryId" name="inventoryId">
+                                    <div class="container">
+                                        <div class="col-12">
+                                            <input type="text" required value="<?php echo $dateNow ?>" name="rentalDate" id="rentalDate" class="">
+                                        </div>
+                                        <div class="col-12 d-none" id="dateReturn">
+                                            <label for="returnDate">Date de retour prévue dans les tranche de dates</label>
+                                            <input type="date" class="form-control" required name="returnDate" id="returnDate" step="1" min="2021-09-23" max="2022-09-23">
+                                            <input type="time" id="appt" name="heure" min="05:00" max="18:00" required step='1'>
+
                                         </div>
                                     </div>
+                                </div>
+                                <div>
+                                    <button type="submit" id="envoyer" name="envoyer" class="btn btn-primary d-none">Envoyer</button>
                                 </div>
                                 <div class="col-3"></div>
                             </div>
@@ -123,6 +127,61 @@ else :
             </div>
             </div>
         </form>
+        <?php
+        if ($_POST) {
+            $br = "<br>";
+            // var_dump($_POST['customerId']);
+            // var_dump($br); 
+            $id = "1010101";
+            $intId = (int)$id;
+            $staffId = (int)$_POST['staff_id'];
+            $inventoryId = (int)$_POST['inventoryId'];
+            $customerId = (int)$_POST['customerId'];
+            $returnDate = $_POST['returnDate'];
+            $returnDatePlusHeure = $returnDate . ' ' . $_POST['heure'];
+            $rentalDate = $_POST['rentalDate'];   
+            // var_dump($rentalDate);       
+            // var_dump($intId);
+            // var_dump($br); 
+            // var_dump($staffId);
+            // var_dump($br);
+            // var_dump($inventoryId);
+            // var_dump($br);
+            // var_dump($customerId);
+            // var_dump($br);
+            // var_dump($returnDatePlusHeure);
+            // var_dump($br);
+            // var_dump($rentalDate);
+            // var_dump($br);
+            $oldDate = strtotime($rentalDate);
+            $newDaterental = date('Y-m-d H:i:s', $oldDate);
+            // var_dump($newDaterental);
+            // var_dump($br);
+            //return_date
+            $oldDateRetuneDate = strtotime($returnDatePlusHeure);
+            $newDaterentalreturnDate = date('Y-m-d H:i:s', $oldDateRetuneDate);
+            // var_dump($oldDateRetuneDate);
+            // var_dump($br);
+            $date = new DateTime();
+            // $update = $date->format('Y-m-d H:i:s') . "\n";
+            // var_dump($update);
+
+            $date->setTimestamp($oldDateRetuneDate);
+            // echo $date->format('Y-m-d H:i:s') . "\n";
+            $oldDateReturneUpdate = $date->format('Y-m-d H:i:s');
+            
+            // var_dump($br);
+            // $timestamp = strtotime('2008-07-01T22:35:17.02');
+            // $new_date_format = date('Y-m-d H:i:s', $timestamp);
+            // echo gettype($newDaterentalreturnDate);
+            // $rental = Rental::add($rentalDate, $inventoryId, $customerId, $returnDatePlusHeure, $staffId);
+
+            // $rental = Rental::add($intId,$newDaterental,$inventoryId,$customerId,$newDaterentalreturnDate,$staffId);
+            $rental = Rental::add($newDaterental,$inventoryId,$customerId,$oldDateReturneUpdate,$staffId);
+            // var_dump($rental);
+            exit;
+        }
+        ?>
     </main>
     <script>
         // AJAX call for autocomplete 
@@ -149,33 +208,94 @@ else :
             $("#suggesstion-box").hide();
             $('#hide1').addClass("d-none");
             $('#container-2').removeClass("d-none");
-        }
-        $('#store_id').change(function() {
-            // Correct data           
-            $("#store_id").prop("disabled", true);
-            $('#container-2').removeClass("d-none");
             $('#hide2').removeClass("d-none");
-        });
+        };
+
+        function selectCustomerid(val) {
+            $("#customerId").val(val);
+        };
+
+        function selectFilm(val) {
+            $("#search-box-1").val(val);
+            $("#suggesstion-box-2").hide();
+            $('#containerFilm').removeClass("d-none");
+            $('#envoyer').removeClass("d-none");
+            $("#stor1").prop("readonly", true);
+            $("#stor2").prop("readonly", true);
+
+        }
+
+        function selectFilmId(val) {
+            $("#search-box-1-id").val(val);
+            $("#suggesstion-box-2").hide();
+            $('#envoyer').removeClass("d-none");
+            $("#stor1").prop("readonly", true);
+            $("#stor2").prop("readonly", true);
+        }
+
+        function setInventaireId(val) {
+            $("#inventoryId").val(val);
+            $('#dateReturn').removeClass("d-none");
+        }
+
+        // function selectFilm2(val) {
+        //     $("#search-box-2").val(val);
+        //     $("#suggesstion-box-2").hide();
+        //     $('#envoyer').removeClass("d-none");
+        //     $("#stor2").prop("readonly", true);
+        //     $("#stor1").prop("readonly", true);
+        // }
+
+        // function selectFilmId2(val) {
+        //     $("#search-box-2-id").val(val);
+        //     $("#suggesstion-box-2").hide();
+        //     $('#envoyer').removeClass("d-none");
+        //     $("#stor1").prop("readonly", true);
+        //     $("#stor2").prop("readonly", true);
+        // }
 
         $('input[type="radio"]').click(function() {
-            // Select all film by inventory value   
-            console.log($(this).val());            
-           var radio = $(this).val();   
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8000/API/ajaxInventory.php",
-                data:{radio:radio},
-                success: function(data) {
-                    console.log(data);
-                    $("#suggesstion-box-2").show();
-                    $("#suggesstion-box-2").html(data);
-                    $("#search-box-2").css("background", "#FFF");
-                }
-            });
+            console.log($(this).val());
+            var radio = $(this).val();
+            if (radio == 1) {
+                $('#search-box-1').removeClass("d-none");
+                $('#search-box-2').addClass("d-none");
+                $("#search-box-1").keyup(function() {
+                    console.log($(this).val());
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8000/API/ajaxInventory.php",
+                        data: 'keyword=' + $(this).val(),
+                        beforeSend: function() {
+                            $("#search-box-1").css("background", "#FFF no-repeat 165px");
+                        },
+                        success: function(data) {
+                            $("#suggesstion-box-2").show();
+                            $("#suggesstion-box-2").html(data);
+                            $("#search-box-1").css("background", "#FFF");
+                        }
+                    });
+                });
+            } else if (radio == 2) {
+                $('#search-box-1').addClass("d-none");
+                $('#search-box-2').removeClass("d-none");
+                $("#search-box-2").keyup(function() {
+                    console.log($(this).val());
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8000/API/ajaxInventory2.php",
+                        data: 'keyword=' + $(this).val(),
+                        beforeSend: function() {
+                            $("#search-box-2").css("background", "#FFF no-repeat 165px");
+                        },
+                        success: function(data) {
+                            $("#suggesstion-box-2").show();
+                            $("#suggesstion-box-2").html(data);
+                            $("#search-box-2").css("background", "#FFF");
+                        }
+                    });
+                });
+            }
         });
-        function selectInventory(value) {
-            $("#suggesstion-box-2").val(value);
-            // $('#hide3').removeClass("d-none");
-        }
     </script>
 <?php endif;

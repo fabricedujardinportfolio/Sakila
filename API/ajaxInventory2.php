@@ -4,7 +4,7 @@ require '../functions.php';
 require '../classes/Inventory.php';
 require '../classes/Film.php';
 if (!empty($_POST["keyword"])) {
-    $state = 1;
+    $state = 2;
     // var_dump($state);
     $key = $_POST["keyword"];
     $querys = Inventory::readByStore($state);

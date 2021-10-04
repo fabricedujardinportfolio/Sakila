@@ -60,6 +60,11 @@ class Film extends Database
         $films = self::query("SELECT film_id,title FROM film WHERE title LIKE '%$title%' ");
         return $films->fetchall();
     }
+    public static function readForAjaxAndId($id,$title)
+    {
+        $films = self::query("SELECT film_id,title FROM sakila.film where film_id=$id and title LIKE '%$title%' ");
+        return $films->fetchall();
+    }
 
     
 }

@@ -15,8 +15,13 @@ class Inventory extends Database
     }
     public static function readByStore($store_id)
     {
-        $staff = self::query("SELECT * FROM inventory WHERE store_id=$store_id");
+        $staff = self::query("SELECT * FROM inventory WHERE store_id=$store_id GROUP BY film_id");
         return $staff->fetchAll();
+    }
+    public static function readForAjaxByFilm1($title)
+    {
+        $films = self::query("SELECT title FROM sakila.inventory where store_id=1 and title LIKE '%$title%' ");
+        return $films->fetch();
     }
     // public static function readByEmail($email)
     // {

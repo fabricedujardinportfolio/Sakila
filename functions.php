@@ -52,7 +52,7 @@ function template_header($title,$nav_en_cours) {
             <a class="nav-link" href="http://$server/reservation.php">Toutes les Réservations</a>
           </li>          
           <li class="nav-item $active2">
-            <a class="nav-link" href="http://$server/reservation.add.php"">Toutes les Réservations</a>
+            <a class="nav-link" href="http://$server/reservation.add.php"">Ajouter une réservations</a>
           </li>
         </ul>
           <div class="col-6 text-right $dNone">
