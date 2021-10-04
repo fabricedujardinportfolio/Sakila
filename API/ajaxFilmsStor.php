@@ -5,7 +5,6 @@ require '../classes/Film.php';
 if (!empty($_POST["keyword"])) {
   $key = $_POST["keyword"];
   $querys = Film::readForAjax($key);
-  // var_dump($querys);
   if (!empty($querys)) {
 ?>
     <ul id="film-list">

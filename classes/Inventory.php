@@ -23,10 +23,4 @@ class Inventory extends Database
         $films = self::query("SELECT title FROM sakila.inventory where store_id=1 and title LIKE '%$title%' ");
         return $films->fetch();
     }
-    // public static function readByEmail($email)
-    // {
-    //     $staffEmail = self::query("SELECT * FROM inventory WHERE staff.email='$email'");
-    //     return $staffEmail->fetch();
-    // }
-    
 }

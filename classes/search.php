@@ -1,10 +1,11 @@
 <?php
 
-class Search extends Database{
+class Search extends Database
+{
 
-    public static function all() {
+    public static function all()
+    {
         $categories = self::query('SELECT * FROM film');
         return $categories->fetchAll();
     }
-    
 }

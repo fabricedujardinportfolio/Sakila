@@ -38,7 +38,7 @@ class Film extends Database
         $filmWidthLimits = self::query("SELECT * FROM `film`  WHERE film_id=$id");
         return $filmWidthLimits->fetch();
     }
-    public static function allWidthLimit($id,$second)
+    public static function allWidthLimit($id, $second)
     {
         $filmWidthLimits = self::query("SELECT * FROM `film`  LIMIT $id, $second");
         return $filmWidthLimits->fetchAll();
@@ -60,11 +60,9 @@ class Film extends Database
         $films = self::query("SELECT film_id,title FROM film WHERE title LIKE '%$title%' ");
         return $films->fetchall();
     }
-    public static function readForAjaxAndId($id,$title)
+    public static function readForAjaxAndId($id, $title)
     {
         $films = self::query("SELECT film_id,title FROM sakila.film where film_id=$id and title LIKE '%$title%' ");
         return $films->fetchall();
     }
-
-    
 }

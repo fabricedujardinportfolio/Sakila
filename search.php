@@ -5,16 +5,16 @@ require './functions.php';
 require './classes/rental.php';
 require './classes/Category.php';
 require './classes/Film.php';
-echo template_header('Read all rental','rubrique2');
+echo template_header('Read all rental', 'rubrique2');
 ?>
- <?php 
-if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
-    ?>
 <?php
-        header("refresh:0; /login.php");
-    else: 
+if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
 ?>
-<div class="container mt-5 pt-5">
+<?php
+  header("refresh:0; /login.php");
+else :
+?>
+  <div class="container mt-5 pt-5">
     <div class="row mt-4">
       <div class="col-md-8 mx-auto bg-light rounded p-4">
         <h5 class="text-center font-weight-bold">Recherche en saisie semi-automatique par titre</h5>
@@ -28,39 +28,37 @@ if(!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false):
       </div>
       <div class="col-md-5" style="position: relative;margin-top: -38px;margin-left: 215px;max-height: 300px; overflow: auto;">
         <div class="list-group" id="show-list" style="overflow: auto;">
-          <!-- Here autocomplete list will be display -->
         </div>
       </div>
     </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="script.js">
-  </script>
+
   <script>
-$(document).ready(function () {
-    // Send Search Text to the server
-    $("#search").keyup(function () {
-      let searchText = $(this).val();
-      if (searchText != "") {
-        $.ajax({
-          url: "action.php",
-          method: "post",
-          data: {
-            query: searchText,
-          },
-          success: function (response) {
-            $("#show-list").html(response);
-          },
-        });
-      } else {
+    $(document).ready(function() {
+      // Send Search Text to the server
+      $("#search").keyup(function() {
+        let searchText = $(this).val();
+        if (searchText != "") {
+          $.ajax({
+            url: "API/action.php",
+            method: "post",
+            data: {
+              query: searchText,
+            },
+            success: function(response) {
+              $("#show-list").html(response);
+            },
+          });
+        } else {
+          $("#show-list").html("");
+        }
+      });
+      // Set searched text in input field on click of search button
+      $(document).on("click", "a", function() {
+        $("#search").val($(this).text());
         $("#show-list").html("");
-      }
+      });
     });
-    // Set searched text in input field on click of search button
-    $(document).on("click", "a", function () {
-      $("#search").val($(this).text());
-      $("#show-list").html("");
-    });
-  });
-</script>
+  </script>
 <?php endif;

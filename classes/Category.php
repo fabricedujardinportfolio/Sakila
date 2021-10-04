@@ -1,20 +1,25 @@
 <?php
 
-class Category extends Database{
+class Category extends Database
+{
 
-    public static function all() {
+    public static function all()
+    {
         $categories = self::query('SELECT * FROM category');
         return $categories->fetchAll();
     }
-    public static function read($id) {
+    public static function read($id)
+    {
         $categorie = self::query("SELECT * FROM category WHERE category_id=$id");
         return $categorie->fetch();
     }
-    public static function readByFilmId($id) {
+    public static function readByFilmId($id)
+    {
         $categorie = self::query("SELECT * FROM film_category WHERE film_category.film_id = $id");
         return $categorie->fetchAll();
     }
-    public static function readByFilms($id) {
+    public static function readByFilms($id)
+    {
         $categorie = self::query("SELECT * FROM film_category WHERE film_category.category_id = $id");
         return $categorie->fetchAll();
     }
@@ -23,5 +28,4 @@ class Category extends Database{
         $categorie = self::query("SELECT * FROM film_category WHERE film_category.category_id = $id");
         return $categorie->fetch();
     }
-    
 }

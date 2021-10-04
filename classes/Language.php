@@ -13,6 +13,4 @@ class Language extends Database
         $filmBylanguage = self::query("SELECT * FROM language WHERE language.language_id = $id");
         return $filmBylanguage->fetch();
     }
-
-    
 }

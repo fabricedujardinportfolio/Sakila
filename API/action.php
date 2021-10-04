@@ -13,4 +13,3 @@ require '../classes/Film.php';
       echo '<p class="list-group-item border-1">Aucun titre</p>';
     }
   }
-?>

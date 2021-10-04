@@ -36,7 +36,6 @@ else :
 ?>
     <main class="form-signin text-center container mt-4">
         <form action="" method="post" name="fo" class="mt-5 pt-5">
-            <!-- //reservationResult.php -->
             <p class="mt-5 pt-5"><strong>LOCALOCA-NC Staff numéro :<?php echo $_SESSION["staff_id"] ?></strong></p>
             <h1 class="h3 mb-3 fw-normal mt-4 pt-4">Nouvel réservation</h1>
             <div class="d-flex">
@@ -55,7 +54,10 @@ else :
                                     <div id="suggesstion-box"></div>
                                 </div>
                                 <div id="hide1" class="container">
-                                    <span>Ou</span><br><button type="button" class="btn btn-primary">Ajouter un client</button>
+                                    <span>Ou</span><br>
+                                    <a href="addCustomer.php">
+                                        <button type="button" class="btn btn-primary">Ajouter un client</button>
+                                    </a>
                                 </div>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -129,57 +131,30 @@ else :
         </form>
         <?php
         if ($_POST) {
-            $br = "<br>";
-            // var_dump($_POST['customerId']);
-            // var_dump($br); 
-            $id = "1010101";
-            $intId = (int)$id;
-            $staffId = (int)$_POST['staff_id'];
-            $inventoryId = (int)$_POST['inventoryId'];
-            $customerId = (int)$_POST['customerId'];
-            $returnDate = $_POST['returnDate'];
-            $returnDatePlusHeure = $returnDate . ' ' . $_POST['heure'];
-            $rentalDate = $_POST['rentalDate'];   
-            // var_dump($rentalDate);       
-            // var_dump($intId);
-            // var_dump($br); 
-            // var_dump($staffId);
-            // var_dump($br);
-            // var_dump($inventoryId);
-            // var_dump($br);
-            // var_dump($customerId);
-            // var_dump($br);
-            // var_dump($returnDatePlusHeure);
-            // var_dump($br);
-            // var_dump($rentalDate);
-            // var_dump($br);
-            $oldDate = strtotime($rentalDate);
-            $newDaterental = date('Y-m-d H:i:s', $oldDate);
-            // var_dump($newDaterental);
-            // var_dump($br);
-            //return_date
-            $oldDateRetuneDate = strtotime($returnDatePlusHeure);
-            $newDaterentalreturnDate = date('Y-m-d H:i:s', $oldDateRetuneDate);
-            // var_dump($oldDateRetuneDate);
-            // var_dump($br);
-            $date = new DateTime();
-            // $update = $date->format('Y-m-d H:i:s') . "\n";
-            // var_dump($update);
-
-            $date->setTimestamp($oldDateRetuneDate);
-            // echo $date->format('Y-m-d H:i:s') . "\n";
-            $oldDateReturneUpdate = $date->format('Y-m-d H:i:s');
-            
-            // var_dump($br);
-            // $timestamp = strtotime('2008-07-01T22:35:17.02');
-            // $new_date_format = date('Y-m-d H:i:s', $timestamp);
-            // echo gettype($newDaterentalreturnDate);
-            // $rental = Rental::add($rentalDate, $inventoryId, $customerId, $returnDatePlusHeure, $staffId);
-
-            // $rental = Rental::add($intId,$newDaterental,$inventoryId,$customerId,$newDaterentalreturnDate,$staffId);
-            $rental = Rental::add($newDaterental,$inventoryId,$customerId,$oldDateReturneUpdate,$staffId);
-            // var_dump($rental);
-            exit;
+            if ($_POST == true) {
+                $staffId = (int)$_POST['staff_id'];
+                $inventoryId = (int)$_POST['inventoryId'];
+                $customerId = (int)$_POST['customerId'];
+                $returnDate = $_POST['returnDate'];
+                $returnDatePlusHeure = $returnDate . ' ' . $_POST['heure'];
+                $rentalDate = $_POST['rentalDate'];
+                $oldDate = strtotime($rentalDate);
+                $newDaterental = date('Y-m-d H:i:s', $oldDate);
+                $oldDateRetuneDate = strtotime($returnDatePlusHeure);
+                $newDaterentalreturnDate = date('Y-m-d H:i:s', $oldDateRetuneDate);
+                $date = new DateTime();
+                $date->setTimestamp($oldDateRetuneDate);
+                $oldDateReturneUpdate = $date->format('Y-m-d H:i:s');
+                // rajouter une résa.
+                $rental = Rental::add($newDaterental, $inventoryId, $customerId, $oldDateReturneUpdate, $staffId);
+                echo "<div class='alert alert-success'>
+                    <strong>Réservation réussit</strong>
+                </div>";
+            } else {
+                echo "<div class='alert alert-danger'>
+                    <strong>Erreur sur la Réservation</strong>
+                </div>";
+            }
         }
         ?>
     </main>
@@ -237,22 +212,6 @@ else :
             $("#inventoryId").val(val);
             $('#dateReturn').removeClass("d-none");
         }
-
-        // function selectFilm2(val) {
-        //     $("#search-box-2").val(val);
-        //     $("#suggesstion-box-2").hide();
-        //     $('#envoyer').removeClass("d-none");
-        //     $("#stor2").prop("readonly", true);
-        //     $("#stor1").prop("readonly", true);
-        // }
-
-        // function selectFilmId2(val) {
-        //     $("#search-box-2-id").val(val);
-        //     $("#suggesstion-box-2").hide();
-        //     $('#envoyer').removeClass("d-none");
-        //     $("#stor1").prop("readonly", true);
-        //     $("#stor2").prop("readonly", true);
-        // }
 
         $('input[type="radio"]').click(function() {
             console.log($(this).val());

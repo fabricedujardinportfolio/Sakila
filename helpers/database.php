@@ -1,6 +1,6 @@
 <?php
-
-class Database {
+class Database
+{
 
     const servername = "localhost";
     const username = "root";
@@ -9,29 +9,30 @@ class Database {
 
     public static $conn;
 
-    protected static function connect() {
+    protected static function connect()
+    {
         try {
-            if(!self::$conn) {
+            if (!self::$conn) {
                 $conn = new PDO("mysql:host=" . self::servername . ";dbname=" . self::database, self::username, self::password);
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$conn = $conn;
             }
-            
+
             return self::$conn;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    protected static function query($sql, $params = []) {
+    protected static function query($sql, $params = [])
+    {
         try {
             $stmt = self::connect()->prepare($sql);
             $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $stmt->execute($params);
             return $stmt;
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
-    
 }

@@ -18,6 +18,4 @@ class Staff extends Database
         $staffEmail = self::query("SELECT * FROM staff WHERE staff.email='$email'");
         return $staffEmail->fetch();
     }
-    
-    
 }
