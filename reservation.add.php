@@ -107,7 +107,7 @@ else :
                                     <input type="text" class="d-none" readonly="readonly" id="inventoryId" name="inventoryId">
                                     <div class="container">
                                         <div class="col-12">
-                                            <input type="text" required value="<?php echo $dateNow ?>" name="rentalDate" id="rentalDate" class="">
+                                            <input type="text" required value="<?php echo $dateNow ?>" name="rentalDate" id="rentalDate" class="d-none">
                                         </div>
                                         <div class="col-12 d-none" id="dateReturn">
                                             <label for="returnDate">Date de retour prévue dans les tranche de dates</label>
