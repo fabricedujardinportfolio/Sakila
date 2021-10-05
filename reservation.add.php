@@ -15,7 +15,7 @@ require './classes/Store.php';
 require './classes/Customer.php';
 require './classes/Inventory.php';
 require './classes/Address.php';
-echo template_header('Read all rental', 'rubrique3');
+echo template_header('Ajouter une réservation', 'rubrique3');
 ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :

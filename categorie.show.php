@@ -5,7 +5,7 @@ require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Language.php';
 require './classes/Actor.php';
-echo template_header('Show all film by catégorys', 'active'); ?>
+echo template_header('Les films de cet catégorie', 'active'); ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
 ?>

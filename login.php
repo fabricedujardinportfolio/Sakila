@@ -4,7 +4,7 @@ require './functions.php';
 require './classes/rental.php';
 require './classes/Staff.php';
 
-echo template_header('Read', 'login');
+echo template_header('Login', 'login');
 if (isset($_REQUEST['valider']))    //button name is "btn_login"
 {
     $email        = strip_tags($_REQUEST["email"]);    //textbox name "txt_username_email"

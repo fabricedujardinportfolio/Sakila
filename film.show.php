@@ -4,7 +4,7 @@ require './functions.php';
 require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Actor.php';
-echo template_header('Read one film', 'active'); ?>
+echo template_header('Le film', 'active'); ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
 ?>

@@ -7,7 +7,7 @@ if (isset($_GET['page-rental']) && !empty($_GET['page-rental'])) {
 require './helpers/Database.php';
 require './functions.php';
 require './classes/rental.php';
-echo template_header('Read all rental', 'rubrique2');
+echo template_header('Toutes les réservations', 'rubrique2');
 ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :

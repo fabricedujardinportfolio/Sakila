@@ -8,7 +8,7 @@ require './classes/Rental.php';
 require './classes/Staff.php';
 require './classes/Customer.php';
 require './classes/Inventory.php';
-echo template_header('Read one film', 'active'); ?>
+echo template_header('Récapitulatif d\'une réservation', 'active'); ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
 ?>
