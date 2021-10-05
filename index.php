@@ -10,7 +10,7 @@ require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Language.php';
 require './classes/Actor.php';
-echo template_header('Accueil', 'rubrique1');
+echo template_header('accueil', 'rubrique1');
 ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :
@@ -27,7 +27,7 @@ else :
     <section>
         <div class="container px-4">
             <div class="row gx-5">
-                <div class="col-4">
+                <div class="col-sm-4 col-12">
                     <div class="p-3 border  border-3 border-dark bg-primary">
                         <h3>Categories</h3>
                         <ol>
@@ -43,10 +43,10 @@ else :
                         </ol>
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-sm-8 col-12">
                     <div class="p-3 border border-3 border-dark  bg-primary">
                         <h3>Films</h3>
-                        <div class="row">
+                        <div class="row " style = "justify-content: space-around;">
                             <?php
                             $films = Film::all();
                             // On récupère le nombre d'articles
@@ -71,7 +71,7 @@ else :
                                     $category_id = $category_ids['category_id'];
 
                             ?>
-                                    <div class="card" style="width: 19.8rem;">
+                                    <div class="card mb-3" style="width: 19.8rem; padding:5px;" >
                                         <?php
                                         if ($category_id == "1") {
                                             echo '<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/action.jpg" data-holder-rendered="true">';
