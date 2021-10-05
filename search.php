@@ -5,7 +5,7 @@ require './functions.php';
 require './classes/rental.php';
 require './classes/Category.php';
 require './classes/Film.php';
-echo template_header('Read all rental', 'rubrique2');
+echo template_header('Faire une recherche', 'rubrique6');
 ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :

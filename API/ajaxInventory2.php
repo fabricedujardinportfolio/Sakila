@@ -19,7 +19,7 @@ if (!empty($_POST["keyword"])) {
                     $filmss = Film::readForAjaxAndId($film_ids, $key);
                     foreach ($filmss as $film) {
                     ?>
-                        <li onClick="selectFilm('<?php echo $film['title']; ?>');selectFilmId('<?php echo (int)$film["film_id"]; ?>');setInventaireId('<?php echo (int)$invetoryId; ?>');"><?php echo $film['title']; ?></li>
+                        <li onClick="selectFilm2('<?php echo $film['title']; ?>');selectFilmId('<?php echo (int)$film["film_id"]; ?>');setInventaireId('<?php echo (int)$invetoryId; ?>');"><?php echo $film['title']; ?></li>
                     <?php
                     } ?>
                 </ul>

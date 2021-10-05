@@ -10,7 +10,7 @@ require './classes/Category.php';
 require './classes/Film.php';
 require './classes/Language.php';
 require './classes/Actor.php';
-echo template_header('Read', 'rubrique1');
+echo template_header('Accueil', 'rubrique1');
 ?>
 <?php
 if (!isset($_SESSION["loggedIn"]) || $_SESSION["loggedIn"] == false) :

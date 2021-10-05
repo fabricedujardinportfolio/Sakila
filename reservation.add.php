@@ -130,6 +130,7 @@ else :
             </div>
         </form>
         <?php
+        //Rajout d'une réservation
         if ($_POST) {
             if ($_POST == true) {
                 $staffId = (int)$_POST['staff_id'];
@@ -185,11 +186,12 @@ else :
             $('#container-2').removeClass("d-none");
             $('#hide2').removeClass("d-none");
         };
-
+        //return de id du client de la réservation
         function selectCustomerid(val) {
             $("#customerId").val(val);
         };
 
+        //film de l'inventaire 1
         function selectFilm(val) {
             $("#search-box-1").val(val);
             $("#suggesstion-box-2").hide();
@@ -199,7 +201,17 @@ else :
             $("#stor2").prop("readonly", true);
 
         }
+        //film de l'inventaire 2
+        function selectFilm2(val) {
+            $("#search-box-2").val(val);
+            $("#suggesstion-box-2").hide();
+            $('#containerFilm').removeClass("d-none");
+            $('#envoyer').removeClass("d-none");
+            $("#stor1").prop("readonly", true);
+            $("#stor2").prop("readonly", true);
 
+        }
+        //film id de l'inventaire 1
         function selectFilmId(val) {
             $("#search-box-1-id").val(val);
             $("#suggesstion-box-2").hide();
@@ -207,12 +219,12 @@ else :
             $("#stor1").prop("readonly", true);
             $("#stor2").prop("readonly", true);
         }
-
+        //Affichage par étape pour validation des data de l'utilisateur
         function setInventaireId(val) {
             $("#inventoryId").val(val);
             $('#dateReturn').removeClass("d-none");
         }
-
+        //methode ajax pour rendre un résulta dynamique en selectionnant l'inventaire 
         $('input[type="radio"]').click(function() {
             console.log($(this).val());
             var radio = $(this).val();
