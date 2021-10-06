@@ -46,7 +46,7 @@ else :
                 <div class="col-sm-8 col-12">
                     <div class="p-3 border border-3 border-dark  bg-primary">
                         <h3>Films</h3>
-                        <div class="row " style = "justify-content: space-around;">
+                        <div class="row " style="justify-content: space-around;">
                             <?php
                             $films = Film::all();
                             // On récupère le nombre d'articles
@@ -62,7 +62,7 @@ else :
                                 $newLanguageId = (int)$film['language_id'];
                                 $Language = Language::read($newLanguageId);
                                 $filmId = (int)$film['film_id'];
-                                $catsByFilms = Category::readByFilmId($filmId);                       
+                                $catsByFilms = Category::readByFilmId($filmId);
                                 $actorByFilm = Actor::readByFilm($filmId);
                                 $nbActor = count($actorByFilm);
                                 foreach ($catsByFilms as $catsByFilm) {
@@ -71,7 +71,7 @@ else :
                                     $category_id = $category_ids['category_id'];
 
                             ?>
-                                    <div class="card mb-3" style="width: 19.8rem; padding:5px;" >
+                                    <div class="card mb-3" style="width: 19.8rem; padding:5px;">
                                         <?php
                                         if ($category_id == "1") {
                                             echo '<img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="/public/img/action.jpg" data-holder-rendered="true">';

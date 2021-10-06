@@ -65,7 +65,7 @@ else :
           <div class="col-4"></div>
         </div>
         <h3>Les films de la catégorie <?php echo $catName['name'] ?></h3>
-        <div class="row">
+        <div class="row " style="justify-content: space-around;">
           <?php
           $categorys = Category::read($newID);
           $new = count($categorys);
@@ -78,12 +78,12 @@ else :
             $film_id = $category['film_id'];
             $i = $new;
             while ($i <= $new) :
-              $film = Film::read($film_id);                 
+              $film = Film::read($film_id);
               $actorByFilm = Actor::readByFilm($film_id);
               $nbActor = count($actorByFilm);
               $i++;
           ?>
-              <div class="card" style="width: 20rem;">
+              <div class="card mb-3" style="width: 20rem;">
                 <div class="card-body">
                   <h5 class="card-title"><?php echo $film["title"] ?></h5>
                   <p>language :<?php echo $film["name"] ?></p>
