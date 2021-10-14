@@ -1,9 +1,9 @@
 # Sakila
 ECF CCI
 <p>Connection BDD<p>
-Définir la conection BDD
-const username = "root";
-const password = "secret";
+<p>Définir la conection BDD<p>
+<code>const username = "root";
+const password = "secret";</code>
 
 <h2>Procédure</h2>
 
