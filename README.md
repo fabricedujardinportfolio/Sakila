@@ -2,8 +2,8 @@
 ECF CCI
 <p>Connection BDD<p>
 <p>Définir la conection BDD<p>
-<code>const username = "root";
-const password = "secret";</code>
+<p><code>const username = "root";</code><p>
+<p><code>const password = "secret";</code><p>
 
 <h2>Procédure</h2>
 
