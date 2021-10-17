@@ -5,6 +5,11 @@ ECF CCI
 <p><code>const username = "root";</code><p>
 <p><code>const password = "secret";</code><p>
 
+<h2>Contrainte</h2>
+<p>Il y a 2 parties que je n'ai pas pu faire. Faute de temps.<p>
+<p>- Le retour d'une réservation<p>
+<p>- Ajouter un client<p>
+  
 <h2>Procédure</h2>
 
 <h3>je lance le serveur avec la commande : </h3>
